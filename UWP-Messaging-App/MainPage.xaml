@@ -9,5 +9,16 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+        <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 40">
+
+            <StackPanel>
+
+            </StackPanel>
+
+            
+            <TextBox Name="messageTB" TextWrapping="Wrap" Height="80"  AcceptsReturn="True" Width="600" HorizontalAlignment="Center" VerticalAlignment="Bottom" PlaceholderText="Enter Your Awesome Message Here..."></TextBox>
+        
+        </StackPanel>
+
     </Grid>
 </Page>
