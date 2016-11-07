@@ -9,11 +9,14 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <StackPanel VerticalAlignment="Bottom">
-        
-        
-        <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 40" HorizontalAlignment="Stretch">
-                <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
+        <ScrollViewer>
+            <StackPanel>
+            
+
+                <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 40" HorizontalAlignment="Stretch">
+                
+                    <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
+       
                     <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
                         <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
                                    Width="280"
@@ -22,7 +25,31 @@
                         </TextBlock>
                     </StackPanel>
 
-                    <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
+                                   Width="280"
+                                   MinHeight="60"
+                                   TextWrapping="Wrap">
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
+                                   Width="280"
+                                   MinHeight="60"
+                                   TextWrapping="Wrap">
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
+                                   Width="280"
+                                   MinHeight="60"
+                                   TextWrapping="Wrap">
+                                </TextBlock>
+                            </StackPanel>
+
+                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
                         <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
                                    Width="280"
                                    MinHeight="60"
@@ -61,12 +88,12 @@
                                    TextWrapping="Wrap">
                         </TextBlock>
                     </StackPanel>
-
-
 
                 </StackPanel>
 
-                <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
+            
+
+            <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                         <TextBox Name="messageTB" 
                                  TextWrapping="Wrap" 
@@ -84,6 +111,8 @@
                 </StackPanel>
             </StackPanel>
         </StackPanel>
+
+        </ScrollViewer>
 
     </Grid>
 </Page>
