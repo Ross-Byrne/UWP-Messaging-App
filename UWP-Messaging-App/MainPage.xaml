@@ -5,6 +5,7 @@
     xmlns:local="using:UWP_Messaging_App"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="using:UWP_Messaging_App.ViewModels"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -18,11 +19,11 @@
                     <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
                         
                         <!-- List view to display all messages in a chat -->
-                        <ListView Name="MessageListView">
+                        <ListView Name="MessageListView" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                                        <TextBlock  Name="messageText" Width="280" MinHeight="60" TextWrapping="Wrap"></TextBlock>
+                                        <TextBlock Text="{Binding message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UWP_Messaging_App.Data
 {
     // class to hold the data for a conversation
-    class Conversation
+    public class Conversation
     {
         public string id { get; set; }                  // id of conversation
         public List<string> userIds { get; set; }       // list of ids for users involved in conversation

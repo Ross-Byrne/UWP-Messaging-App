@@ -8,11 +8,12 @@ using UWP_Messaging_App.Data;
 namespace UWP_Messaging_App.ViewModels
 {
     // model to handle conversations in app
-    class ConversationViewModel
+    public class ConversationViewModel
     {
 
-        private ConversationService convoService;
-        private Conversation conversation;
+        private ConversationService convoService = new ConversationService();
+        Conversation conversation { get; set; }
+        
 
         public ConversationViewModel(string id)
         {
@@ -20,10 +21,10 @@ namespace UWP_Messaging_App.ViewModels
 
         } // Constructor()
 
-        public Conversation getConversation()
+        public List<Message> Messages
         {
-            return conversation;
-        }
+            get { return getMessages(); }
+        } 
 
         public List<Message> getMessages()
         {
@@ -31,18 +32,21 @@ namespace UWP_Messaging_App.ViewModels
         }
 
         // add message to conversation
-        public void sendMessage(string senderId, string recipientId, string message)
+        public void sendMessage(string senderId, string message)
         {
             Message m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.senderId = senderId;
-            m.recipientId = recipientId;
             m.message = message;
 
             conversation.messages.Add(m);
 
         } // sendMessage()
 
+        public void addUser(string id)
+        {
+            conversation.userIds.Add(id);
+        }
     } // class
 
 } // namespace

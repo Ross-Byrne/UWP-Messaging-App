@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UWP_Messaging_App.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,9 +23,14 @@ namespace UWP_Messaging_App
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public ConversationViewModel conversation { get; set; }
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            // create the view model for the conversation
+            conversation = new ConversationViewModel("c1");
         }
     }
 }
