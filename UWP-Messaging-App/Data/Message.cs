@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UWP_Messaging_App.Models
+namespace UWP_Messaging_App.Data
 {
     // class for holding message data
     class Message
