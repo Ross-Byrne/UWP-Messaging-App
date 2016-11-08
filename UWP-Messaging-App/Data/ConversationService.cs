@@ -16,7 +16,21 @@ namespace UWP_Messaging_App.Data
         {
             // get the conversation from couchDB
 
-            return null;
+            Conversation c = new Conversation();
+            c.id = "c1";
+            c.userIds = new List<string>();
+            c.userIds.Add("u1");
+            c.userIds.Add("u2");
+            c.messages = new List<Message>();
+
+            Message m = new Message();
+            m.id = "1";
+            m.senderId = "u1";
+            m.recipientId = "u2";
+            m.message = "Hello";
+            c.messages.Add(m);
+
+            return c;
 
         } // getConversationByID()
 

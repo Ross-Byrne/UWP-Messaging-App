@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace UWP_Messaging_App.ViewModels
 {
-    class MessageViewModel
+    // model to handle conversations in app
+    class ConversationViewModel
     {
-    }
-}
+
+    } // class
+
+} // namespace
