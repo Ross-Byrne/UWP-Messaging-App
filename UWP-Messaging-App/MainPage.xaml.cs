@@ -31,6 +31,7 @@ namespace UWP_Messaging_App
 
             // create the view model for the conversation
             conversation = new ConversationViewModel("c1");
+
         }
 
         // fires when the send button is clicked
@@ -51,5 +52,14 @@ namespace UWP_Messaging_App
             } // if
 
         } // sendMessageBT_Click()
+
+
+        // fires when the list of messages is finished loading
+        private void MessageList_Loaded(object sender, RoutedEventArgs e)
+        {
+            // scroll to the bottom of the scroll area
+            scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);
+
+        } // MessageList_Loaded()
     }
 }
