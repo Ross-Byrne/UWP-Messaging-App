@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using UWP_Messaging_App.Data;
 namespace UWP_Messaging_App.ViewModels
 {
     // model to handle conversations in app
-    public class ConversationViewModel
+    public class ConversationViewModel : NotificationBase
     {
 
         private ConversationService convoService = new ConversationService();
@@ -21,12 +22,12 @@ namespace UWP_Messaging_App.ViewModels
 
         } // Constructor()
 
-        public List<Message> Messages
+        public ObservableCollection<Message> Messages
         {
             get { return getMessages(); }
         } 
 
-        public List<Message> getMessages()
+        public ObservableCollection<Message> getMessages()
         {
             return conversation.messages;
         }

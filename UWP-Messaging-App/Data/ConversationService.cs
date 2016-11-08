@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace UWP_Messaging_App.Data
             c.userIds = new List<string>();
             c.userIds.Add("u1");
             c.userIds.Add("u2");
-            c.messages = new List<Message>();
+            c.messages = new ObservableCollection<Message>();
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();

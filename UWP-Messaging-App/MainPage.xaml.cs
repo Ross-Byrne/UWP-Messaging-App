@@ -32,5 +32,14 @@ namespace UWP_Messaging_App
             // create the view model for the conversation
             conversation = new ConversationViewModel("c1");
         }
+
+        // fires when the send button is clicked
+        private void sendMessageBT_Click(object sender, RoutedEventArgs e)
+        {
+            // send the message. Trim the string for leading and trailing spaces.
+            conversation.sendMessage("u1", messageTB.Text.Trim());
+            messageTB.Text = "";
+
+        } // sendMessageBT_Click()
     }
 }
