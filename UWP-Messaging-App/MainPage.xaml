@@ -16,7 +16,7 @@
             </Grid.RowDefinitions>
 
             <!-- Area for messages to be displayed -->
-            <ScrollViewer Grid.Row="0">
+            <ScrollViewer Name="scrollView" Grid.Row="0">
                 <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
                     <!-- itemControl to display all messages in a chat -->
                     <ItemsControl  Name="MessageList" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" >
@@ -38,7 +38,7 @@
                 <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                         <!-- Text box for entering message -->
-                        <TextBox Name="messageTB" 
+                        <TextBox    Name="messageTB" 
                                     TextWrapping="Wrap" 
                                     Height="80"  
                                     AcceptsReturn="True" 

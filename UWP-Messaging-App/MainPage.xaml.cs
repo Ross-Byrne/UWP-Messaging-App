@@ -36,9 +36,19 @@ namespace UWP_Messaging_App
         // fires when the send button is clicked
         private void sendMessageBT_Click(object sender, RoutedEventArgs e)
         {
-            // send the message. Trim the string for leading and trailing spaces.
-            conversation.sendMessage("u1", messageTB.Text.Trim());
-            messageTB.Text = "";
+            // only if there is a message
+            if (messageTB.Text != "")
+            {
+                // send the message. Trim the string for leading and trailing spaces.
+                conversation.sendMessage("u1", messageTB.Text.Trim());
+
+                // clear the message box
+                messageTB.Text = "";
+
+                // scroll to the bottom of the scroll area
+                scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);
+
+            } // if
 
         } // sendMessageBT_Click()
     }
