@@ -27,37 +27,73 @@ namespace UWP_Messaging_App.Data
             c.messages = new List<Message>();
 
             m = new Message();
-            m.id = "1";
+            m.id = Guid.NewGuid().ToString();
             m.senderId = "u1";
-            m.message = "Hello";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
             c.messages.Add(m);
 
             m = new Message();
-            m.id = "1";
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u1";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
             m.message = "Hey there";
             c.messages.Add(m);
 
             m = new Message();
-            m.id = "1";
-            m.senderId = "u1";
+            m.id = Guid.NewGuid().ToString();
+            m.id = Guid.NewGuid().ToString();
             m.message = "Blah blah blah";
             c.messages.Add(m);
 
             m = new Message();
-            m.id = "1";
+            m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
             m.message = "Damn I hate you";
             c.messages.Add(m);
 
             m = new Message();
-            m.id = "1";
+            m.id = Guid.NewGuid().ToString();
             m.senderId = "u1";
             m.message = "Thanks, you too.";
             c.messages.Add(m);
 
             m = new Message();
-            m.id = "1";
+            m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
             m.message = "<3";
             c.messages.Add(m);

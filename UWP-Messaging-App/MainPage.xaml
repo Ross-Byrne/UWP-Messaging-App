@@ -9,103 +9,30 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+    
+        
         <ScrollViewer>
-            <StackPanel>
+            <StackPanel VerticalAlignment="Bottom">
             
-
                 <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 40" HorizontalAlignment="Stretch">
                 
                     <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
                         
-                        <!-- List view to display all messages in a chat -->
-                        <ListView Name="MessageListView" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}">
-                            <ListView.ItemTemplate>
+                        <!-- itemControl to display all messages in a chat -->
+                        <ItemsControl  Name="MessageListView" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" >
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
                                         <TextBlock Text="{Binding message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
                                     </StackPanel>
                                 </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        <!-- List view end -->
-
-                        <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
-
-                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                                </TextBlock>
-                            </StackPanel>
-
-                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                                </TextBlock>
-                            </StackPanel>
-
-                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                                <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                                </TextBlock>
-                            </StackPanel>
-
-                            <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
-
-                    <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Right">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
-
-                    <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Right">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
-
-                    <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
-
-                    <StackPanel BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                        <TextBlock Text="kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5"
-                                   Width="280"
-                                   MinHeight="60"
-                                   TextWrapping="Wrap">
-                        </TextBlock>
-                    </StackPanel>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <!-- itemControl end -->
 
                 </StackPanel>
 
-            
-
+    
             <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
                         <TextBox Name="messageTB" 
