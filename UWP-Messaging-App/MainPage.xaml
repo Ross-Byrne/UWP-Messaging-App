@@ -9,52 +9,51 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
-        
-        <ScrollViewer>
-            <StackPanel VerticalAlignment="Bottom">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="160"/>
+            </Grid.RowDefinitions>
 
-                <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 40" HorizontalAlignment="Stretch">
-                    
-                    <!-- Area for messages to be displayed -->
-                    <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
-
-                        <!-- itemControl to display all messages in a chat -->
-                        <ItemsControl  Name="MessageList" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" >
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
-                                        <TextBlock Text="{Binding message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <!-- itemControl end -->
-
-                    </StackPanel>
-                    <!-- End Area for messages to be displayed -->
-
-                    <!-- Area for typing and sending message -->
-                    <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
-                            <TextBox Name="messageTB" 
-                                     TextWrapping="Wrap" 
-                                     Height="80"  
-                                     AcceptsReturn="True" 
-                                     Width="600" 
-                                     HorizontalAlignment="Center" 
-                                     VerticalAlignment="Bottom" 
-                                     PlaceholderText="Enter Your Awesome Message Here...">
-                            </TextBox>
-
-                            <Button Name="sendMessageBT" Width="140" Height="60" Margin="20 0 0 0" Click="sendMessageBT_Click">Send</Button>
-                        </StackPanel>
-                    </StackPanel>
-                    <!-- End Area for typing and sending message -->
+            <!-- Area for messages to be displayed -->
+            <ScrollViewer Grid.Row="0">
+                <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
+                    <!-- itemControl to display all messages in a chat -->
+                    <ItemsControl  Name="MessageList" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <!-- itemControl end -->
                 </StackPanel>
+            </ScrollViewer>
+            <!-- End Area for messages to be displayed -->
+
+            <!-- Area for typing and sending message -->
+            <StackPanel VerticalAlignment="Bottom" Grid.Row="1" Margin="0 0 0 30">
+                <StackPanel HorizontalAlignment="Stretch" Margin="80 0 80 0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 20 0 0">
+                        <!-- Text box for entering message -->
+                        <TextBox Name="messageTB" 
+                                    TextWrapping="Wrap" 
+                                    Height="80"  
+                                    AcceptsReturn="True" 
+                                    Width="600" 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Bottom" 
+                                    PlaceholderText="Enter Your Awesome Message Here...">
+                        </TextBox>
+
+                        <!-- Button for sending message -->
+                        <Button Name="sendMessageBT" Width="140" Height="60" Margin="20 0 0 0" Click="sendMessageBT_Click">Send</Button>
+                    </StackPanel>
+                </StackPanel>
+                <!-- End Area for typing and sending message -->
             </StackPanel>
-
-        </ScrollViewer>
-
+        </Grid>
     </Grid>
 </Page>
