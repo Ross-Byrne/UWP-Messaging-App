@@ -25,7 +25,7 @@ namespace UWP_Messaging_App.Data
             c.userIds = new List<string>();
             c.userIds.Add("u1");
             c.userIds.Add("u2");
-            c.messages = new ObservableCollection<Message>();
+            c.messages = new List<Message>();
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
