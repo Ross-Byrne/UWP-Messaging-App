@@ -22,7 +22,7 @@
                     <ItemsControl  Name="MessageList" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" Loaded="MessageList_Loaded" >
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="Left">
+                                <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="8" HorizontalAlignment="{Binding Alignment}">
                                     <TextBlock Text="{Binding Message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
                                 </StackPanel>
                             </DataTemplate>

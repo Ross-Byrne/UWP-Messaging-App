@@ -30,5 +30,26 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(This.senderId, value, () => This.senderId = value); }
         }
 
+        public string Alignment
+        {
+            // if message is from currently logged in user, HorizontalAlignment = right
+            // otherwise it is equal to left
+            get
+            {
+                System.Diagnostics.Debug.WriteLine("SenderId: " + SenderId);
+                // some method of checking logged in users id
+                if (SenderId == "u1")
+                {
+                    System.Diagnostics.Debug.WriteLine("Right");
+                    return "Right";
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Left");
+                    return "Left";
+                }
+            }
+        }
+
     }
 }

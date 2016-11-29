@@ -29,7 +29,13 @@ namespace UWP_Messaging_App.Data
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
+            m.senderId = "u2";
+            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
+            c.messages.Add(m);
+
+            m = new Message();
+            m.id = Guid.NewGuid().ToString();
+            m.senderId = "u2";
             m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
             c.messages.Add(m);
 
@@ -41,19 +47,13 @@ namespace UWP_Messaging_App.Data
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
+            m.senderId = "u2";
             m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
             c.messages.Add(m);
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
+            m.senderId = "u2";
             m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
             c.messages.Add(m);
 

@@ -40,6 +40,7 @@ namespace UWP_Messaging_App
             // only if there is a message
             if (messageTB.Text != "")
             {
+                // use "u1" for current user for now
                 // send the message. Trim the string for leading and trailing spaces.
                 conversation.sendMessage("u1", messageTB.Text.Trim());
 
