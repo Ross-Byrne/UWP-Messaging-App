@@ -10,6 +10,8 @@ namespace UWP_Messaging_App.Data
     class User
     {
         public string id { get; set; }              // id of user
+
+        public string name { get; set; }
         public string firstName { get; set; }       // users first name
         public string lastName { get; set; }        // users last name
         public string email { get; set; }           // users email address (used for login)

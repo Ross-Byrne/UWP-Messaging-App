@@ -1,8 +1,11 @@
-﻿using System;
+﻿using MyCouch;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using UWP_Messaging_App.Data;
 using UWP_Messaging_App.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -32,8 +35,34 @@ namespace UWP_Messaging_App
             // create the view model for the conversation
             conversation = new ConversationViewModel("c1");
 
+
+            // create connection to couchDB
+
+            test();
+
         }
 
+        private async Task test()
+        {
+            try
+            {
+
+
+                using (var store = new MyCouchStore("http://rossbyrne:JEH4.5GQ.1PO@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_users"))
+                {
+                    // var user = await client.GetByIdAsync<Customer>(someId);
+
+                    var user = await store.GetByIdAsync<User>("org.couchdb.user:rossbyrne");
+
+                    System.Diagnostics.Debug.WriteLine(user.name);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Oops. Something didn't go to plan!");
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            }
+        }
         // fires when the send button is clicked
         private void sendMessageBT_Click(object sender, RoutedEventArgs e)
         {
