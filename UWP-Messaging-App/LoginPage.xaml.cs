@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +31,28 @@ namespace UWP_Messaging_App
         // fires when the login button is clicked
         private void loginBT_Click(object sender, RoutedEventArgs e)
         {
+            if(loginUsernameTextBox.Text != "" && loginPasswordTextBox.Password != "")
+            {
+                // Do login
+
+                // save to localstorage
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["CurrentUsername"] = loginUsernameTextBox.Text;
+                localSettings.Values["CurrentUserpassword"] = loginPasswordTextBox.Password;
+
+                System.Diagnostics.Debug.WriteLine("Saved Username: " + localSettings.Values["CurrentUsername"]);
+                System.Diagnostics.Debug.WriteLine("Saved Password: " + localSettings.Values["CurrentUserpassword"]);
+
+                // navigate to main page
+                loginPageFrame.Navigate(typeof(MainPage));
+
+            }
+            else // otherwise
+            {
+                // report error
+                errorTextBlock.Text = "Error! Username AND Password must be entered!";
+
+            } // if
 
         }
 

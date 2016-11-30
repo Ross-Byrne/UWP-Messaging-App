@@ -19,7 +19,7 @@
 
                 <StackPanel>
                     <TextBlock Text="Password:" Width="400" Height="20" Margin="0 0 0 10" />
-                    <TextBox x:Name="loginPasswordTextBox" Width="400" Height="20"/>
+                    <PasswordBox x:Name="loginPasswordTextBox" Width="400" Height="20"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -32,6 +32,8 @@
             </StackPanel>
 
         </StackPanel>
+
+        <Frame Name="loginPageFrame"/>
 
     </Grid>
 </Page>
