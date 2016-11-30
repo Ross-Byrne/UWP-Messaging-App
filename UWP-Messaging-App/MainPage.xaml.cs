@@ -54,6 +54,8 @@ namespace UWP_Messaging_App
 
                     var user = await store.GetByIdAsync<User>("org.couchdb.user:rossbyrne");
 
+               
+
                     System.Diagnostics.Debug.WriteLine(user.name);
                 }
             }
