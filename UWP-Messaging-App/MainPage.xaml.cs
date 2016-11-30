@@ -39,7 +39,7 @@ namespace UWP_Messaging_App
 
             // create connection to couchDB
 
-            test();
+            //test();
 
         }
 

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using MyCouch;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
+using UWP_Messaging_App.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -29,22 +33,12 @@ namespace UWP_Messaging_App
         }
 
         // fires when the login button is clicked
-        private void loginBT_Click(object sender, RoutedEventArgs e)
+        private async void loginBT_Click(object sender, RoutedEventArgs e)
         {
             if(loginUsernameTextBox.Text != "" && loginPasswordTextBox.Password != "")
             {
-                // Do login
-
-                // save to localstorage
-                var localSettings = ApplicationData.Current.LocalSettings;
-                localSettings.Values["CurrentUsername"] = loginUsernameTextBox.Text;
-                localSettings.Values["CurrentUserpassword"] = loginPasswordTextBox.Password;
-
-                System.Diagnostics.Debug.WriteLine("Saved Username: " + localSettings.Values["CurrentUsername"]);
-                System.Diagnostics.Debug.WriteLine("Saved Password: " + localSettings.Values["CurrentUserpassword"]);
-
-                // navigate to main page
-                loginPageFrame.Navigate(typeof(MainPage));
+                // Validate login details
+                await validateLoginDetails();
 
             }
             else // otherwise
@@ -62,5 +56,65 @@ namespace UWP_Messaging_App
         {
 
         }
+
+        // validates the users login details.
+        // saves them if correct, displays error if wrong.
+        private async Task validateLoginDetails()
+        {
+            try
+            {
+                // connect to _session endpoint
+                using (var client = new MyCouchClient("http://uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_session"))
+                {
+                    // create username and password object
+                    var json = new JObject();
+                    json.Add("name", loginUsernameTextBox.Text);
+                    json.Add("password", loginPasswordTextBox.Password);
+
+                    // send post to get session cookie
+                    var result = await client.Documents.PostAsync(json.ToString());
+                    
+
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
+
+                    // if successful
+                    if (result.IsSuccess)
+                    {
+                        // save login details
+                        // save to localstorage
+                        var localSettings = ApplicationData.Current.LocalSettings;
+                        localSettings.Values["CurrentUsername"] = loginUsernameTextBox.Text;
+                        localSettings.Values["CurrentUserpassword"] = loginPasswordTextBox.Password;
+
+                        // navigate to main page
+                        loginPageFrame.Navigate(typeof(MainPage));
+
+                    }
+                    else if(result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        // display error message
+                        errorTextBlock.Text = "Unauthorized! Username or Password incorrect!";
+                    } 
+                    else
+                    {
+                        // display an error
+                        errorTextBlock.Text = "An Error occured. Please try again...";
+
+                    } // if
+                } // using
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
+                // display an error
+                errorTextBlock.Text = "An Error occured. Please try again...";
+            } // try
+           
+
+        } // validateLoginDetails()
     }
 }

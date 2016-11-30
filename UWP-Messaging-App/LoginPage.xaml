@@ -27,7 +27,7 @@
                     <Button x:Name="registerBT" Content="Register" Click="registerBT_Click"  />
                 </StackPanel>
                 <StackPanel Margin="0 20 0 0">
-                    <TextBlock x:Name="errorTextBlock" Text="" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="errorTextBlock" Text="" HorizontalAlignment="Center" Foreground="Red"/>
                 </StackPanel>
             </StackPanel>
 
