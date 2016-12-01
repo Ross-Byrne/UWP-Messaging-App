@@ -8,6 +8,18 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" VerticalAlignment="Top">
+
+                <HyperlinkButton Content="Add Contact" HorizontalAlignment="Left" />
+            
+
+
+                <HyperlinkButton Content="Settings" HorizontalAlignment="Right" Click="HyperlinkButton_Click" />
+
+                
+        </StackPanel>
+
+        <Frame Name="contactsPageFrame"/>
 
     </Grid>
 </Page>

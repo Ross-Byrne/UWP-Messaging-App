@@ -86,8 +86,8 @@ namespace UWP_Messaging_App
             if (username.ToString() != "")
             {
 
-                // user has details, go to main page
-                rootFrame.Navigate(typeof(MainPage));
+                // user has details, go to contacts page
+                rootFrame.Navigate(typeof(ContactsPage));
             }
             else // otherwise
             {
