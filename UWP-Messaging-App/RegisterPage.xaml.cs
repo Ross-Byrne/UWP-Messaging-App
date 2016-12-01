@@ -26,5 +26,17 @@ namespace UWP_Messaging_App
         {
             this.InitializeComponent();
         }
+
+        // registers the user details given
+        private void registerBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // goes to the login page
+        private void loginBT_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
