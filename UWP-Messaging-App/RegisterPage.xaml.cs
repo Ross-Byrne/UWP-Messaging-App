@@ -1,10 +1,14 @@
-﻿using System;
+﻿using MyCouch;
+using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,9 +32,20 @@ namespace UWP_Messaging_App
         }
 
         // registers the user details given
-        private void registerBT_Click(object sender, RoutedEventArgs e)
+        private async void registerBT_Click(object sender, RoutedEventArgs e)
         {
+            if (registerUsernameTextBox.Text != "" && registerPasswordTextBox.Password != "")
+            {
+                // create a new user
+                await createUser();
 
+            }
+            else // otherwise
+            {
+                // report error
+                errorTextBlock.Text = "Error! A Username AND Password must be entered!";
+
+            } // if
         } // registerBT_Click()
 
 
@@ -41,5 +56,69 @@ namespace UWP_Messaging_App
             registerPageFrame.Navigate(typeof(LoginPage));
 
         } // loginBT_Click()
+
+
+        // Creates a new CouchDB User
+        private async Task createUser()
+        {
+            string _id = "org.couchdb.user:";
+            try
+            {
+                // connect to _session endpoint
+                using (var client = new MyCouchClient("http://admin:Balloon2016@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_users"))
+                {
+                    // create new user object
+                    var json = new JObject();
+                    json.Add("_id", _id + registerUsernameTextBox.Text);
+                    json.Add("name", registerUsernameTextBox.Text);
+                    json.Add("password", registerPasswordTextBox.Password);
+                    json.Add("roles", new JArray());
+                    json.Add("type", "user");
+
+                    // send post to CouchDB to create user
+                    var result = await client.Documents.PostAsync(json.ToString());
+
+
+                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+
+                    // if successful
+                    if (result.IsSuccess)
+                    {
+                        // save login details
+                        // save to localstorage
+                        var localSettings = ApplicationData.Current.LocalSettings;
+                        localSettings.Values["CurrentUsername"] = registerUsernameTextBox.Text;
+                        localSettings.Values["CurrentUserpassword"] = registerPasswordTextBox.Password;
+
+                        // navigate to main page
+                        registerPageFrame.Navigate(typeof(MainPage));
+
+                    }
+                    else if (result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    {
+                        // display error message
+                        errorTextBlock.Text = "Unauthorized! Username or Password incorrect!";
+                    }
+                    else
+                    {
+                        // display an error
+                        errorTextBlock.Text = "An Error occured. Please try again...";
+
+                    } // if
+                } // using
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+
+                // display an error
+                errorTextBlock.Text = "An Error occured. Please try again...";
+            } // try
+
+
+        } // createUser()
     }
 }
