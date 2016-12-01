@@ -48,14 +48,17 @@ namespace UWP_Messaging_App
 
             } // if
 
-        }
+        } // loginBT_Click()
 
 
-        // fires when the login button is clicked
+        // fires when the register button is clicked
         private void registerBT_Click(object sender, RoutedEventArgs e)
         {
+            // navigate to register page
+            loginPageFrame.Navigate(typeof(RegisterPage));
 
-        }
+        } // registerBT_Click()
+
 
         // validates the users login details.
         // saves them if correct, displays error if wrong.

@@ -31,12 +31,15 @@ namespace UWP_Messaging_App
         private void registerBT_Click(object sender, RoutedEventArgs e)
         {
 
-        }
+        } // registerBT_Click()
+
 
         // goes to the login page
         private void loginBT_Click(object sender, RoutedEventArgs e)
         {
+            // navigate to the login page
+            registerPageFrame.Navigate(typeof(LoginPage));
 
-        }
+        } // loginBT_Click()
     }
 }
