@@ -79,9 +79,9 @@ namespace UWP_Messaging_App
                     var result = await client.Documents.PostAsync(json.ToString());
 
 
-                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
                     System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
 
                     // if successful
                     if (result.IsSuccess)
@@ -96,10 +96,10 @@ namespace UWP_Messaging_App
                         registerPageFrame.Navigate(typeof(MainPage));
 
                     }
-                    else if (result.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                    else if (result.StatusCode == System.Net.HttpStatusCode.Conflict) // if username is already taken
                     {
                         // display error message
-                        errorTextBlock.Text = "Unauthorized! Username or Password incorrect!";
+                        errorTextBlock.Text = "Username already taken! Try a different one!";
                     }
                     else
                     {
