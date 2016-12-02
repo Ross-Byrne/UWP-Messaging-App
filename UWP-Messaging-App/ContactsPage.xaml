@@ -8,22 +8,25 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <StackPanel VerticalAlignment="Top">
-            <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="10,0">
-                <StackPanel HorizontalAlignment="Left">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"  />
+                <ColumnDefinition Width="*"  />
+            </Grid.ColumnDefinitions>
 
-                    <Button Content="Add Contact" />
-                </StackPanel>
-                
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="Contacts" />
-                </StackPanel>
-                <StackPanel HorizontalAlignment="Right">
-                    <Button Content="Settings"  Click="HyperlinkButton_Click"/>
-
-                </StackPanel>
-
+            <StackPanel HorizontalAlignment="Left" Grid.Column="0" Margin="10" >
+                <Button Content="Add Contact" />
             </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
+                <TextBlock Text="Contacts" FontSize="28"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Right" Grid.Column="2" Margin="10">
+                <Button Content="Settings"  Click="HyperlinkButton_Click"/>
+            </StackPanel>
+        </Grid>
+        <StackPanel>
+            <TextBlock Text="Hello there.." />
         </StackPanel>
 
         <Frame Name="contactsPageFrame"/>
