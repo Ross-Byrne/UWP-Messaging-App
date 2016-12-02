@@ -40,5 +40,13 @@ namespace UWP_Messaging_App
             Frame.Navigate(typeof(SettingsPage));
 
         } // settingsBT_Click()
+
+        // when item is selected
+        private void contactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // go to conversation with selected contact
+            var selectedItem = contactsList.SelectedItem as ContactViewModel;
+            System.Diagnostics.Debug.WriteLine(selectedItem.Name);
+        }
     }
 }
