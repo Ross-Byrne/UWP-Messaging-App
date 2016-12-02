@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UWP_Messaging_App.Data
 {
     // class to hold information about indevidual contacts
-    class Contact
+    public class Contact
     {
         public string ContactId { get; set; }
         public string ConversationId { get; set; }

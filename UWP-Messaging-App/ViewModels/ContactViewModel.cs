@@ -8,8 +8,8 @@ using UWP_Messaging_App.Models;
 
 namespace UWP_Messaging_App.ViewModels
 {
-    // view model for contact
-    class ContactViewModel : NotificationBase<Contact>
+    // view model for an individual contact
+    public class ContactViewModel : NotificationBase<Contact>
     {
 
         public ContactViewModel(Contact contact = null) : base(contact) { }
