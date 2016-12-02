@@ -55,7 +55,7 @@ namespace UWP_Messaging_App
         private void registerBT_Click(object sender, RoutedEventArgs e)
         {
             // navigate to register page
-            loginPageFrame.Navigate(typeof(RegisterPage));
+            Frame.Navigate(typeof(RegisterPage));
 
         } // registerBT_Click()
 
@@ -92,7 +92,7 @@ namespace UWP_Messaging_App
                         localSettings.Values["CurrentUserpassword"] = loginPasswordTextBox.Password;
 
                         // navigate to main page
-                        loginPageFrame.Navigate(typeof(MainPage));
+                        Frame.Navigate(typeof(MainPage));
 
                     }
                     else if(result.StatusCode == System.Net.HttpStatusCode.Unauthorized)

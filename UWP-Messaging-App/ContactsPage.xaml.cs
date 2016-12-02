@@ -28,11 +28,11 @@ namespace UWP_Messaging_App
         }
 
         // navigates to settings page
-        private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             // navigate to the settings page
-            contactsPageFrame.Navigate(typeof(SettingsPage));
+            Frame.Navigate(typeof(SettingsPage));
 
-        } // HyperlinkButton_Click
+        } // Button_Click()
     }
 }

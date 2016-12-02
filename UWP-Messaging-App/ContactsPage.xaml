@@ -8,10 +8,12 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="80" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -26,16 +28,14 @@
                 <TextBlock Text="Contacts" FontSize="28"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Grid.Column="2" Margin="10">
-                <Button Content="Settings"  Click="HyperlinkButton_Click"/>
+                <Button Content="Settings" Click="Button_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
             <StackPanel>
-                <TextBlock Text="Hello there.." />
+                <TextBlock Text="Content" />
             </StackPanel>
         </Grid>
-
-    <Frame Name="contactsPageFrame"/>
 
     </Grid>
 </Page>
