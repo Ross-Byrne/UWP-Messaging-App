@@ -32,18 +32,18 @@
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Center">
                 <ScrollViewer Name="scrollView" Grid.Row="0">
                     <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
                         <!-- itemControl to display all messages in a chat -->
                         <ListBox  Name="contactsList" ItemsSource="{x:Bind contacts.Contacts, Mode=OneWay}" Margin="80 0 80 0">
-                            <ItemsControl.ItemTemplate>
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Padding="15 10 15 10" Margin="30 5 30 5">
-                                        <TextBlock Text="{Binding Name}" MinWidth="40" MinHeight="22" TextWrapping="Wrap"/>
+                                    <StackPanel Padding="15 10 15 10" Margin="30 5 30 5" BorderThickness="1" BorderBrush="Bisque" HorizontalAlignment="Center">
+                                        <TextBlock Text="{Binding Name}" MinWidth="40" MinHeight="22" TextWrapping="Wrap" HorizontalAlignment="Center" /> 
                                     </StackPanel>
                                 </DataTemplate>
-                            </ItemsControl.ItemTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                         <!-- itemControl end -->
                     </StackPanel>
