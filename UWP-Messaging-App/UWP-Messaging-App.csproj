@@ -98,6 +98,7 @@
     <Compile Include="ContactsPage.xaml.cs">
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\Contact.cs" />
     <Compile Include="Data\ConversationService.cs" />
     <Compile Include="Data\UserService.cs" />
     <Compile Include="LoginPage.xaml.cs">
@@ -109,6 +110,7 @@
     <Compile Include="Data\Conversation.cs" />
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\User.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ConversationModel.cs" />
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,6 +120,7 @@
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\ContactViewModel.cs" />
     <Compile Include="ViewModels\ConversationViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelHelpers.cs" />
