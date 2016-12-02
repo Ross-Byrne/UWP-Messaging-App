@@ -8,6 +8,32 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"  />
+                <ColumnDefinition Width="*"  />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel HorizontalAlignment="Left" Grid.Column="0" Margin="10" >
+                <Button x:Name="backBT" Content="Go Back" Click="backBT_Click" />
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
+                <TextBlock Text="Settings" FontSize="28"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <StackPanel Margin="20" HorizontalAlignment="Center">
+                    <Button x:Name="logoutBT" Content="Logout" Click="logoutBT_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
 
     </Grid>
 </Page>

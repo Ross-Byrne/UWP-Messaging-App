@@ -91,8 +91,8 @@ namespace UWP_Messaging_App
                         localSettings.Values["CurrentUsername"] = loginUsernameTextBox.Text;
                         localSettings.Values["CurrentUserpassword"] = loginPasswordTextBox.Password;
 
-                        // navigate to main page
-                        Frame.Navigate(typeof(MainPage));
+                        // navigate to contacts page
+                        Frame.Navigate(typeof(ContactsPage));
 
                     }
                     else if(result.StatusCode == System.Net.HttpStatusCode.Unauthorized)

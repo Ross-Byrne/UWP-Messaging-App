@@ -22,13 +22,13 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel HorizontalAlignment="Left" Grid.Column="0" Margin="10" >
-                <Button Content="Add Contact" />
+                <Button x:Name="addContactsBT" Content="Add Contact" />
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
                 <TextBlock Text="Contacts" FontSize="28"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Right" Grid.Column="2" Margin="10">
-                <Button Content="Settings" Click="Button_Click"/>
+                <Button x:Name="settingsBT" Content="Settings" Click="settingsBT_Click"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

@@ -28,11 +28,11 @@ namespace UWP_Messaging_App
         }
 
         // navigates to settings page
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void settingsBT_Click(object sender, RoutedEventArgs e)
         {
             // navigate to the settings page
             Frame.Navigate(typeof(SettingsPage));
 
-        } // Button_Click()
+        } // settingsBT_Click()
     }
 }
