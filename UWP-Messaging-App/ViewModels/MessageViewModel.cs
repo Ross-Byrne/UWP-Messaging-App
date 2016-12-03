@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UWP_Messaging_App.Data;
+using Windows.Storage;
 
 namespace UWP_Messaging_App.ViewModels
 {
@@ -36,9 +37,11 @@ namespace UWP_Messaging_App.ViewModels
             // otherwise it is equal to left
             get
             {
-         
+                var localSettings = ApplicationData.Current.LocalSettings;
+                string userId = localSettings.Values["CurrentUsername"] as string; 
+
                 // some method of checking logged in users id
-                if (SenderId == "u1")
+                if (SenderId == userId)
                 {
                     return "Right";
                 }

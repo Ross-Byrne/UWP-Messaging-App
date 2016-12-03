@@ -99,9 +99,12 @@ namespace UWP_Messaging_App
             // only if there is a message
             if (messageTB.Text != "")
             {
-                // use "u1" for current user for now
+                var localSettings = ApplicationData.Current.LocalSettings;
+                string userid = localSettings.Values["CurrentUsername"] as string;
+
+                // send username.
                 // send the message. Trim the string for leading and trailing spaces.
-                conversation.sendMessage("u1", messageTB.Text.Trim());
+                conversation.sendMessage(userid, messageTB.Text.Trim());
 
                 // clear the message box
                 messageTB.Text = "";
