@@ -31,6 +31,12 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(This.senderId, value, () => This.senderId = value); }
         }
 
+        public long Timestamp
+        {
+            get { return This.timestamp; }
+            set { SetProperty(This.timestamp, value, () => This.timestamp = value); }
+        }
+
         public string Alignment
         {
             // if message is from currently logged in user, HorizontalAlignment = right

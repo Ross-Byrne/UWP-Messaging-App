@@ -59,11 +59,14 @@ namespace UWP_Messaging_App.ViewModels
             //m.senderId = senderId;
             //m.message = message;
 
-              
+            // get timestamp
+            long timestamp = DateTime.UtcNow.Ticks;
+
             // create a new message view model
             var m = new MessageViewModel();
             m.Id = Guid.NewGuid().ToString();
             m.SenderId = senderId;
+            m.Timestamp = timestamp;
             m.Message = message;
 
             m.PropertyChanged += Message_OnNotifyPropertyChanged;
@@ -71,10 +74,7 @@ namespace UWP_Messaging_App.ViewModels
             conversation.messages.Add(m); // just for now
             // breeds.Add(m); // conversation model add method (adds to couchDB)
 
-
         } // sendMessage()
-
-     
 
         public void addUser(string id)
         {
