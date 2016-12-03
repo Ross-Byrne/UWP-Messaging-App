@@ -121,5 +121,13 @@ namespace UWP_Messaging_App
             scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);
 
         } // MessageList_Loaded()
+
+        // goes back to last page
+        private void backBT_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate back a page
+            Frame.GoBack();
+
+        } // backBT_Click()
     }
 }

@@ -49,8 +49,6 @@ namespace UWP_Messaging_App
             // get selected contact
             var selectedItem = contactsList.SelectedItem as ContactViewModel;
 
-            System.Diagnostics.Debug.WriteLine(selectedItem.Name);
-
             // navigate to the conversation page and pass the contact view model as param
             Frame.Navigate(typeof(ConvoPage), selectedItem as ContactViewModel);
 
