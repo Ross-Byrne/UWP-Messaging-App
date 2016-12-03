@@ -36,6 +36,66 @@ namespace UWP_Messaging_App.Models
 
             contacts.Add(c);
 
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "tom";
+
+            contacts.Add(c);
+            c = new Contact();
+            c.ContactId = "org.couchdb.user:tom";
+            c.ConversationId = "c1";
+            c.Name = "END";
+           
+            contacts.Add(c);
         } // Constructor
 
         // gets then contacts for current logged in user
