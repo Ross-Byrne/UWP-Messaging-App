@@ -30,6 +30,7 @@ namespace UWP_Messaging_App
             this.InitializeComponent();
 
             // initialise viewModel
+            // need to pass in the users ID
             contacts = new ContactsViewModel("Me");
         }
 
@@ -45,8 +46,14 @@ namespace UWP_Messaging_App
         private void contactsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // go to conversation with selected contact
+            // get selected contact
             var selectedItem = contactsList.SelectedItem as ContactViewModel;
+
             System.Diagnostics.Debug.WriteLine(selectedItem.Name);
-        }
+
+            // navigate to the conversation page and pass the contact view model as param
+            Frame.Navigate(typeof(ConvoPage), selectedItem as ContactViewModel);
+
+        } // contactsList_SelectionChanged()
     }
 }

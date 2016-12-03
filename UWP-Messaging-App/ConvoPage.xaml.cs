@@ -28,20 +28,30 @@ namespace UWP_Messaging_App
     public sealed partial class ConvoPage : Page
     {
         public ConversationViewModel conversation { get; set; }
+        public ContactViewModel contact { get; set; }
 
         public ConvoPage()
         {
             this.InitializeComponent();
 
-            // create the view model for the conversation
-            conversation = new ConversationViewModel("c1");
-
-
-            // create connection to couchDB
-
-            //test();
 
         }
+
+
+        // runs when page is navigated to
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            // var parameters = (RestaurantParams)e.Parameter
+
+            // get contact view model from param
+            contact = e.Parameter as ContactViewModel;
+
+            // create the view model for the conversation
+            conversation = new ConversationViewModel(contact.ConversationId);
+
+        } // OnNavigatedTo()
 
         private async Task test()
         {
