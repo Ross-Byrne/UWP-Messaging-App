@@ -49,6 +49,12 @@ namespace UWP_Messaging_App.ViewModels
 
         } // init()
 
+        // updates the messages
+        public async Task updateMessages(string convoId)
+        {
+
+        } // updateMessages()
+
         public ObservableCollection<MessageViewModel> Messages
         {
             get { return _Messages; }
@@ -67,7 +73,7 @@ namespace UWP_Messaging_App.ViewModels
         }
 
         // add message to conversation
-        public void sendMessage(string senderId, string message)
+        public async Task sendMessage(string senderId, string message)
         {
             //Message m = new Message();
             //m.id = Guid.NewGuid().ToString();
@@ -88,7 +94,9 @@ namespace UWP_Messaging_App.ViewModels
             m.PropertyChanged += Message_OnNotifyPropertyChanged;
             Messages.Add(m);
             conversation.messages.Add(m); // just for now
-            // breeds.Add(m); // conversation model add method (adds to couchDB)
+            
+            // saves message
+            await convoModel.addMessage(m);
 
         } // sendMessage()
 

@@ -13,24 +13,69 @@ namespace UWP_Messaging_App.Models
     // model to manage conversation data
     class ConversationModel
     {
+        private Conversation conversation { get; set; }
+
         public async Task<Conversation> getConversationByID(string id)
         {
             // get the conversation from couchDB
-            Conversation c = await getConvoFromCouch(id);
+            conversation = await getConvoFromCouch(id);
 
-            if(c == null)
+            if(conversation == null)
             {
                 return null;
             }
 
             // update messages
-            c.messages = await getMessages(id);
+            conversation.messages = await getMessages(id);
 
-            return c;
+            return conversation;
 
         } // getConversationByID()
 
-   
+        // adds message to couch and updates all messages
+        public async Task addMessage(Message m)
+        {
+            try
+            {
+                // get logged in users details for authenticate calls
+                var localSettings = ApplicationData.Current.LocalSettings;
+                var user = localSettings.Values["CurrentUsername"] as string;
+                var pass = localSettings.Values["CurrentUserpassword"] as string;
+
+                // add message
+                using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "messages"))
+                {
+                    // create json object for message
+                    JObject json = new JObject();
+                    json.Add("_id", m.id);
+                    json.Add("conversationId", m.conversationId);
+                    json.Add("message", m.message);
+                    json.Add("senderId", m.senderId);
+                    json.Add("timestamp", m.timestamp);
+
+                    // save message to couchDB
+                    var result = await client.Documents.PostAsync(json.ToString());
+
+                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+
+                    // if successful
+                    if (result.IsSuccess)
+                    {
+                        // update messages
+                        await getMessages(m.conversationId);
+
+                    } // if
+
+                } // using
+            } catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+            } // try
+
+        } // addMessage()
+
         // updates the messages for a conversation
         public async Task<List<Message>> getMessages(string convoId)
         {
@@ -75,18 +120,22 @@ namespace UWP_Messaging_App.Models
                                 // deserialize result
                                 var m = client.Serializer.Deserialize<Message>(message.Content);
 
-                                if (m != null)
-                                {
+                                // check if the message is null and if the convo id matches the conversation
+                                if (m != null && m.conversationId == convoId)
+                                {  
                                     // add to list of temps
                                     temp.Add(m);
-                                    System.Diagnostics.Debug.WriteLine("Sender: " + m.senderId + "Message: " + m.message );
-
+                                    System.Diagnostics.Debug.WriteLine("Sender: " + m.senderId + "Message: " + m.message);
+                                    
                                 } // if
                             } // foreach
 
                             // order the messages by time stamp
                             IOrderedEnumerable<Message> orderedList = temp.OrderBy(t => t.timestamp);
                             var messages = new List<Message>(orderedList);
+
+                            // set messages var
+                            conversation.messages = messages;
 
                             // return message list
                             return messages;
@@ -104,7 +153,8 @@ namespace UWP_Messaging_App.Models
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
             } // try
-        }
+
+        } // getMessages()
 
         private async Task<Conversation> getConvoFromCouch(string id)
         {

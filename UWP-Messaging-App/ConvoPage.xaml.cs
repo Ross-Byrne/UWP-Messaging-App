@@ -53,46 +53,6 @@ namespace UWP_Messaging_App
 
         } // OnNavigatedTo()
 
-        private async Task test()
-        {
-            string username = "";
-            string password = "";
-
-            try
-            {
-                var localSettings = ApplicationData.Current.LocalSettings;
-
-                username = localSettings.Values["CurrentUsername"].ToString();
-                password = localSettings.Values["CurrentUserpassword"].ToString();
-
-            } catch(Exception ex)
-            {
-
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            }
-
-            try
-            {
-
-                System.Diagnostics.Debug.WriteLine(username + " " + password);
-                using (var store = new MyCouchStore("http://" + username + ":" + password + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_users"))
-                {
-                    
-                    // get the admin user
-                    var user = await store.GetByIdAsync<User>("org.couchdb.user:rossbyrne");
-
-                    // display the admin username
-                    System.Diagnostics.Debug.WriteLine(user.name);
-                } // using
-
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Oops. Something didn't go to plan!");
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-            } // try
-
-        } // test()
         // fires when the send button is clicked
         private void sendMessageBT_Click(object sender, RoutedEventArgs e)
         {
