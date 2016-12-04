@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -72,12 +73,29 @@ namespace UWP_Messaging_App
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(LoginPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
-        }
+
+            // check if user login details are saved
+            var localSettings = ApplicationData.Current.LocalSettings;
+            var username = (localSettings.Values["CurrentUsername"] != null ? localSettings.Values["CurrentUsername"] : "");
+            
+            if (username.ToString() != "")
+            {
+
+                // user has details, go to contacts page
+                rootFrame.Navigate(typeof(ContactsPage));
+            }
+            else // otherwise
+            {
+                // go to login page
+                rootFrame.Navigate(typeof(LoginPage));
+            }
+
+        } // OnLaunched()
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
