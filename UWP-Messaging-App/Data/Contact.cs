@@ -11,6 +11,9 @@ namespace UWP_Messaging_App.Data
     {
         public string ContactId { get; set; }
         public string ConversationId { get; set; }
-        public string Name { get; set; }
+        public string UserOne { get; set; }
+        public string UserTwo { get; set; }
+        public bool UserOneAccepted { get; set; }
+        public bool UserTwoAccepted { get; set; }
     } // class
 }

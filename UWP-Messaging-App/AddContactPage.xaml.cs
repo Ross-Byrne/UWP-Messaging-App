@@ -71,7 +71,7 @@ namespace UWP_Messaging_App
 
         } // AddContactBT_Click()
 
-        // Creates a new CouchDB User
+        // Creates a new CouchDB contact
         private async Task addContact(string username)
         {
             string _id = "org.couchdb.user:";
@@ -113,7 +113,10 @@ namespace UWP_Messaging_App
                 c.ConversationId = Guid.NewGuid().ToString();
 
                 // add username
-                c.Name = username;
+                c.UserOne = username;
+                c.UserTwo = user;
+                c.UserOneAccepted = false;
+                c.UserTwoAccepted = true;
 
                 // create the conversation object
                 Conversation convo = new Conversation();
@@ -128,51 +131,52 @@ namespace UWP_Messaging_App
                     // add conversation object to couchDB
                 } // using
 
-                // get contacts for couch and add new contact to list
+                // get contacts and add new contact to couch
                 using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "contacts"))
                 {
                     
+                    // get all contacts
+                    var result = await client.Documents.GetAsync("_all_docs");
 
-                    // create new user object 
+                    // check that contact is not already added
+                    if(result.Content != null) {
+
+                        var keyvalues = client.Serializer.Deserialize<IDictionary<string, dynamic>>(result.Content);
+
+                        System.Diagnostics.Debug.WriteLine(keyvalues.Keys);
+                    }
+                    
+
+                    // create new contact object 
                     var json = new JObject();
-                    /* json.Add("_id", _id + registerUsernameTextBox.Text);
-                     json.Add("name", registerUsernameTextBox.Text);
-                     json.Add("password", registerPasswordTextBox.Password);
-                     json.Add("roles", new JArray());
-                     json.Add("type", "user");*/
+                    json.Add("_id", c.ContactId);
+                    json.Add("conversationId", c.ConversationId);
+                    json.Add("userOne", c.UserOne);
+                    json.Add("UserTwo", c.UserTwo);
+                    json.Add("userOneAccepted", c.UserOneAccepted);
+                    json.Add("userTwoAccepted", c.UserTwoAccepted);
 
-                    // send post to CouchDB to create user
-                   // var result = await client.Documents.PostAsync(json.ToString());
+                    // send post to CouchDB to create contact
+                    var createResult = await client.Documents.PostAsync(json.ToString());
 
 
-                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
-                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
+                    System.Diagnostics.Debug.WriteLine("Results: " + createResult.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + createResult.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + createResult.Reason);
 
-                    //// if successful
-                    //if (result.IsSuccess)
-                    //{
-                    //    // save login details
-                    //    // save to localstorage
-                    //    var localSettings = ApplicationData.Current.LocalSettings;
-                    //    // localSettings.Values["CurrentUsername"] = registerUsernameTextBox.Text;
-                    //    // localSettings.Values["CurrentUserpassword"] = registerPasswordTextBox.Password;
+                    // if successful
+                    if (result.IsSuccess)
+                    {
+                        // navigate to contacts page
+                        Frame.Navigate(typeof(ContactsPage));
 
-                    //    // navigate to main page
-                    //    // registerPageFrame.Navigate(typeof(ConvoPage));
+                    }
+                    else
+                    {
+                        // display an error
+                        errorTextBlock.Text = "An Error occured. Please try again...";
 
-                    //}
-                    //else if (result.StatusCode == System.Net.HttpStatusCode.Conflict) // if username is already taken
-                    //{
-                    //    // display error message
-                    //    errorTextBlock.Text = "Username already taken! Try a different one!";
-                    //}
-                    //else
-                    //{
-                    //    // display an error
-                    //    errorTextBlock.Text = "An Error occured. Please try again...";
-
-                    //} // if
+                    } // if
                 } // using
 
             }

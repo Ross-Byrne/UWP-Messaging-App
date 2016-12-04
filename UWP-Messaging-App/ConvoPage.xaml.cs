@@ -29,6 +29,7 @@ namespace UWP_Messaging_App
     {
         public ConversationViewModel conversation { get; set; }
         public ContactViewModel contact { get; set; }
+        public string ContactName { get; set; }
 
         public ConvoPage()
         {
@@ -43,10 +44,24 @@ namespace UWP_Messaging_App
         {
             base.OnNavigatedTo(e);
 
+            var localSettings = ApplicationData.Current.LocalSettings;
+
+            var username = localSettings.Values["CurrentUsername"] as string;
+            
+
             // var parameters = (RestaurantParams)e.Parameter
 
             // get contact view model from param
             contact = e.Parameter as ContactViewModel;
+
+            // set the contact name
+            if(contact.UserOne == username)
+            {
+                ContactName = contact.UserTwo;
+            } else
+            {
+                ContactName = contact.UserOne;
+            }
 
             // create the view model for the conversation
             conversation = new ConversationViewModel(contact.ConversationId);

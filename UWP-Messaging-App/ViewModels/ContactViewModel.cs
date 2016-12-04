@@ -26,10 +26,28 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(This.ConversationId, value, () => This.ConversationId = value); }
         }
 
-        public string Name
+        public string UserOne
         {
-            get { return This.Name; }
-            set { SetProperty(This.Name, value, () => This.Name = value); }
+            get { return This.UserOne; }
+            set { SetProperty(This.UserOne, value, () => This.UserOne = value); }
+        }
+
+        public string UserTwo
+        {
+            get { return This.UserTwo; }
+            set { SetProperty(This.UserTwo, value, () => This.UserTwo = value); }
+        }
+
+        public bool UserOneAccepted
+        {
+            get { return This.UserOneAccepted; }
+            set { SetProperty(This.UserOneAccepted, value, () => This.UserOneAccepted = value); }
+        }
+
+        public bool UserTwoAccepted
+        {
+            get { return This.UserTwoAccepted; }
+            set { SetProperty(This.UserTwoAccepted, value, () => This.UserTwoAccepted = value); }
         }
 
     } // class

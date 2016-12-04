@@ -23,10 +23,28 @@ namespace UWP_Messaging_App.Models
             set { contact.ConversationId = value; }
         }
 
-        public string Name
+        public string UserOne
         {
-            get { return contact.Name; }
-            set { contact.Name = value; }
+            get { return contact.UserOne; }
+            set { contact.UserOne = value; }
+        }
+
+        public string UserTwo
+        {
+            get { return contact.UserTwo; }
+            set { contact.UserTwo = value; }
+        }
+
+        public bool UserOneAccepted
+        {
+            get { return contact.UserOneAccepted; }
+            set { contact.UserOneAccepted = value; }
+        }
+
+        public bool UserTwoAccepted
+        {
+            get { return contact.UserTwoAccepted; }
+            set { contact.UserTwoAccepted = value; }
         }
     }
 }

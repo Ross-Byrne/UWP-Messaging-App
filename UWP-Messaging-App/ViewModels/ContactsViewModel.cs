@@ -21,17 +21,23 @@ namespace UWP_Messaging_App.ViewModels
 
         public ContactsViewModel(string id)
         {
-            var contacts = contactsModel.getContacts();
+            // initialise the view model
+            init();
+
+        } // Constructor()
+
+        private async Task init()
+        {
+            var contacts = await contactsModel.getContacts();
 
             // load contacts
             foreach (var contact in contacts)
             {
                 var c = new ContactViewModel(contact);
-               // c.PropertyChanged += Contact_OnNotifyPropertyChanged;
+                // c.PropertyChanged += Contact_OnNotifyPropertyChanged;
                 _Contacts.Add(c);
             }
-
-        } // Constructor()
+        }
 
         public ObservableCollection<ContactViewModel> Contacts
         {
