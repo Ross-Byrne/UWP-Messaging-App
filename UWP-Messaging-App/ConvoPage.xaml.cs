@@ -46,45 +46,28 @@ namespace UWP_Messaging_App
             _dispatcherTimer.Start();
         }
 
-        private void _dispatcherTimer_Tick(object sender, object e)
+        private async void _dispatcherTimer_Tick(object sender, object e)
         {
             if (contact != null)
             {
                 if (conversation.isUpdatingMessages != true)
                 {
                     // check for messages
-                    conversation.updateMessages(contact.ConversationId);
+                    await conversation.updateMessages(contact.ConversationId);
 
-                    System.Diagnostics.Debug.WriteLine("Timer!");
+                    // scroll to the bottom of the scroll area
+                    scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);
+
+                    //System.Diagnostics.Debug.WriteLine("Timer!");
 
                 } else
                 {
 
-                    System.Diagnostics.Debug.WriteLine("Skiped update");
+                    //System.Diagnostics.Debug.WriteLine("Skiped update");
                 }
 
             } // if
         }
-
-        private async void dispatcherTimer_Tick()
-        {
-            // do some work not connected with UI
-            if (contact != null)
-            {
-                
-
-                await Window.Current.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                () => {
-                    // do some work on UI here;
-                    // check for messages
-                    conversation.updateMessages(contact.ConversationId);
-
-                    System.Diagnostics.Debug.WriteLine("Timer!");
-                });
-
-            } // if
-           
-        } // timerCallback
 
         // runs when page is navigated to
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -100,7 +83,11 @@ namespace UWP_Messaging_App
             // create the view model for the conversation
             conversation = new ConversationViewModel(contact.ConversationId);
 
+            // scroll to the bottom of the scroll area
+            scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);
+
         } // OnNavigatedTo()
+
 
         // fires when the send button is clicked
         private void sendMessageBT_Click(object sender, RoutedEventArgs e)
@@ -113,7 +100,7 @@ namespace UWP_Messaging_App
 
                 // send username.
                 // send the message. Trim the string for leading and trailing spaces.
-                conversation.sendMessage(userid, messageTB.Text.Trim());
+               conversation.sendMessage(userid, messageTB.Text.Trim());
 
                 // clear the message box
                 messageTB.Text = "";
