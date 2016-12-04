@@ -24,6 +24,9 @@ namespace UWP_Messaging_App.Models
 
         private async Task init()
         {
+            // clear contacts list
+            contacts.Clear();
+
             // get the contacts from couch
             await getContactsFromCouch();
         }
@@ -64,6 +67,8 @@ namespace UWP_Messaging_App.Models
 
                         var keyvalues = client.Serializer.Deserialize<JObject>(result.Content);
 
+                        System.Diagnostics.Debug.WriteLine(keyvalues["rows"].Count());
+
                         foreach(var value in keyvalues["rows"]) // for each contact
                         {
                             // get id
@@ -77,16 +82,23 @@ namespace UWP_Messaging_App.Models
                             // deserialize result
                             var c = client.Serializer.Deserialize<Contact>(contact.Content);
 
-                            // add to list of temps
-                            tempContacts.Add(c);
+                            if (c != null)
+                            {
+                                // check if logged in user is user one or two
+                                if (user == c.UserOne || user == c.UserTwo)
+                                {
+                                    // add to list of temps
+                                    tempContacts.Add(c);
+                                    System.Diagnostics.Debug.WriteLine("UserOne: " + c.UserOne + "\nUserTwo: " + c.UserTwo);
+                                } // if
 
-                            System.Diagnostics.Debug.WriteLine("UserOne: " + c.UserOne + "\nUserTwo: " + c.UserTwo);
+                            } // if
+                        } // foreach
+                    } // if
 
-                        }
-                        //System.Diagnostics.Debug.WriteLine(keyvalues.Keys);
-                    }
+                    // add loaded contacts from couch to contacts
+                    contacts = tempContacts;
 
-                   
                 } // using
 
             } catch(Exception ex)

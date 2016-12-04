@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UWP_Messaging_App.Data;
 using UWP_Messaging_App.Models;
+using Windows.Storage;
 
 namespace UWP_Messaging_App.ViewModels
 {
@@ -48,6 +49,25 @@ namespace UWP_Messaging_App.ViewModels
         {
             get { return This.UserTwoAccepted; }
             set { SetProperty(This.UserTwoAccepted, value, () => This.UserTwoAccepted = value); }
+        }
+
+        // get the contact name that is not the logged in user
+        public string ContactName
+        {
+            get
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                var username = localSettings.Values["CurrentUsername"] as string;
+
+                if (username == UserOne)
+                {
+                    return UserTwo;
+                }
+                else
+                {
+                    return UserOne;
+                } // if
+            } // get
         }
 
     } // class

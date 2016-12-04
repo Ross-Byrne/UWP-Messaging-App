@@ -28,10 +28,16 @@ namespace UWP_Messaging_App
         public ContactsPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
 
             // initialise viewModel
             // need to pass in the users ID
-            contacts = new ContactsViewModel("Me");
+            contacts = new ContactsViewModel();
+
         }
 
         // navigates to settings page

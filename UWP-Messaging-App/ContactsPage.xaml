@@ -44,7 +44,7 @@
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Padding="15 10 15 10" Margin="30 5 30 5" HorizontalAlignment="Stretch">
-                                    <TextBlock Text="{Binding Name}" MinWidth="40" FontSize="20" MinHeight="22" TextWrapping="Wrap" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding ContactName}" MinWidth="40" FontSize="20" MinHeight="22" TextWrapping="Wrap" HorizontalAlignment="Center" />
                                 </StackPanel>
                             </DataTemplate>
                         </ListBox.ItemTemplate>

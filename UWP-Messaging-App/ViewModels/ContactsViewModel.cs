@@ -19,15 +19,19 @@ namespace UWP_Messaging_App.ViewModels
            = new ObservableCollection<ContactViewModel>();
 
 
-        public ContactsViewModel(string id)
+        public ContactsViewModel()
         {
             // initialise the view model
             init();
 
         } // Constructor()
 
-        private async Task init()
+        public async Task init()
         {
+            // clear collection
+            _Contacts.Clear();
+
+            // get contacts
             var contacts = await contactsModel.getContacts();
 
             // load contacts
@@ -45,8 +49,6 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(ref _Contacts, value); }
         }
 
- 
-        
         // add contact Method
         public void addContact(string id)
         {
