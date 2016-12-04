@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using UWP_Messaging_App.Data;
+using UWP_Messaging_App.Models;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -77,6 +78,27 @@ namespace UWP_Messaging_App
             string _id = "org.couchdb.user:";
             try
             {
+                // check that contact isn't already added
+
+                // get model
+                ContactsModel cm = new ContactsModel();
+
+                // get contacts
+                List<Contact> temp = await cm.getContacts();
+
+                // check if the contact is added
+                foreach(var contact in temp)
+                {
+                    // if contact is added
+                    if(username == contact.UserOne || username == contact.UserTwo)
+                    {
+                        // say so
+                        errorTextBlock.Text = "Oops! That contact is already added...";
+                        return;
+
+                    } // if
+                } // foreach
+
                 // check that username is a value username
                 using (var client = new MyCouchClient("http://admin:Balloon2016@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_users"))
                 {
@@ -128,25 +150,33 @@ namespace UWP_Messaging_App
                 // create conversation object
                 using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "conversations"))
                 {
+                    // create new conversation object 
+                    var json = new JObject();
+                    json.Add("_id", convo.id);
+                    var ids = new JArray(convo.userIds);
+                    json.Add("userIds", ids);
+
                     // add conversation object to couchDB
+                    var createResult = await client.Documents.PostAsync(json.ToString());
+
+                    System.Diagnostics.Debug.WriteLine("Results: " + createResult.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + createResult.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + createResult.Reason);
+
+                    // if not successful
+                    if (createResult.IsSuccess == false)
+                    {
+                        // display an error
+                        errorTextBlock.Text = "An Error occured. Please try again...";
+                        return;
+
+                    } // if
+
                 } // using
 
-                // get contacts and add new contact to couch
+                // add new contact to couch
                 using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "contacts"))
                 {
-                    
-                    // get all contacts
-                    var result = await client.Documents.GetAsync("_all_docs");
-
-                    // check that contact is not already added
-                    if(result.Content != null) {
-
-                        var keyvalues = client.Serializer.Deserialize<IDictionary<string, dynamic>>(result.Content);
-
-                        System.Diagnostics.Debug.WriteLine(keyvalues.Keys);
-                    }
-                    
-
                     // create new contact object 
                     var json = new JObject();
                     json.Add("_id", c.ContactId);
@@ -165,7 +195,7 @@ namespace UWP_Messaging_App
                     System.Diagnostics.Debug.WriteLine("Reason: " + createResult.Reason);
 
                     // if successful
-                    if (result.IsSuccess)
+                    if (createResult.IsSuccess)
                     {
                         // navigate to contacts page
                         Frame.Navigate(typeof(ContactsPage));
