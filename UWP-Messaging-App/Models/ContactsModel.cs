@@ -38,6 +38,8 @@ namespace UWP_Messaging_App.Models
         // gets then contacts for current logged in user
         public async Task getContactsFromCouch()
         {
+            List<Contact> tempContacts = new List<Contact>();
+
             // get logged in users details for authenticate calls
             var localSettings = ApplicationData.Current.LocalSettings;
             var user = localSettings.Values["CurrentUsername"] as string;
@@ -52,13 +54,36 @@ namespace UWP_Messaging_App.Models
                     // get all contacts
                     var result = await client.Documents.GetAsync("_all_docs");
 
+                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+
                     // check that contact is not already added
                     if (result.Content != null)
                     {
 
-                        var keyvalues = client.Serializer.Deserialize<IDictionary<string, dynamic>>(result.Content);
+                        var keyvalues = client.Serializer.Deserialize<JObject>(result.Content);
 
-                        System.Diagnostics.Debug.WriteLine(keyvalues.Keys);
+                        foreach(var value in keyvalues["rows"]) // for each contact
+                        {
+                            // get id
+                            var id = value["id"];
+
+                            System.Diagnostics.Debug.WriteLine(id.ToString());
+
+                            // get the contact
+                            var contact = await client.Documents.GetAsync(id.ToString());
+
+                            // deserialize result
+                            var c = client.Serializer.Deserialize<Contact>(contact.Content);
+
+                            // add to list of temps
+                            tempContacts.Add(c);
+
+                            System.Diagnostics.Debug.WriteLine("UserOne: " + c.UserOne + "\nUserTwo: " + c.UserTwo);
+
+                        }
+                        //System.Diagnostics.Debug.WriteLine(keyvalues.Keys);
                     }
 
                    
