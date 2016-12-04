@@ -44,6 +44,7 @@ namespace UWP_Messaging_App
         // adds contact
         private void AddContactBT_Click(object sender, RoutedEventArgs e)
         {
+    
             var localSettings = ApplicationData.Current.LocalSettings;
             var user = localSettings.Values["CurrentUsername"] as string;
 
@@ -62,7 +63,7 @@ namespace UWP_Messaging_App
                 System.Diagnostics.Debug.WriteLine("Trying to add contact");
 
                 // add contact
-                addContact(addContactUsernameTextBox.Text); 
+                addContact();
 
 
             } else // if no text
@@ -72,153 +73,20 @@ namespace UWP_Messaging_App
 
         } // AddContactBT_Click()
 
-        // Creates a new CouchDB contact
-        private async Task addContact(string username)
+        // add a contact
+        private async Task addContact()
         {
-            string _id = "org.couchdb.user:";
-            try
+            ContactsModel cm = new ContactsModel();
+
+            // add contact
+            errorTextBlock.Text = await cm.addContact(addContactUsernameTextBox.Text);
+
+            // if no error
+            if(errorTextBlock.Text == "")
             {
-                // check that contact isn't already added
-
-                // get model
-                ContactsModel cm = new ContactsModel();
-
-                // get contacts
-                List<Contact> temp = await cm.getContacts();
-
-                // check if the contact is added
-                foreach(var contact in temp)
-                {
-                    // if contact is added
-                    if(username == contact.UserOne || username == contact.UserTwo)
-                    {
-                        // say so
-                        errorTextBlock.Text = "Oops! That contact is already added...";
-                        return;
-
-                    } // if
-                } // foreach
-
-                // check that username is a value username
-                using (var client = new MyCouchClient("http://admin:Balloon2016@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "_users"))
-                {
-                    var result = await client.Documents.GetAsync(_id + username);
-
-                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error + "\nReason: " + result.Reason + "\nStatus code: " + result.StatusCode);
-
-                    // handle the result
-                    if (result.StatusCode == System.Net.HttpStatusCode.NotFound) // if not found
-                    {
-                        // show message
-                        errorTextBlock.Text = "Oops! That user cannot be found!";
-                    }
-                    else if (result.IsSuccess == false) // if call did not work
-                    {
-                        errorTextBlock.Text = "Oops! Something went wrong. Please try again.";
-
-                    } // if
-                  
-                }
-
-                // get logged in users details for authenticate calls
-                var localSettings = ApplicationData.Current.LocalSettings;
-                var user = localSettings.Values["CurrentUsername"] as string;
-                var pass = localSettings.Values["CurrentUserpassword"] as string;
-
-                // create a contact object
-                Contact c = new Contact();
-
-                // set ID for contact
-                c.ContactId = Guid.NewGuid().ToString();
-
-                // create ID for conversation
-                c.ConversationId = Guid.NewGuid().ToString();
-
-                // add username
-                c.UserOne = username;
-                c.UserTwo = user;
-                c.UserOneAccepted = false;
-                c.UserTwoAccepted = true;
-
-                // create the conversation object
-                Conversation convo = new Conversation();
-                convo.id = c.ConversationId;
-                convo.userIds = new List<string>();
-                convo.userIds.Add(_id + user);
-                convo.userIds.Add(_id + username);
-
-                // create conversation object
-                using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "conversations"))
-                {
-                    // create new conversation object 
-                    var json = new JObject();
-                    json.Add("_id", convo.id);
-                    var ids = new JArray(convo.userIds);
-                    json.Add("userIds", ids);
-
-                    // add conversation object to couchDB
-                    var createResult = await client.Documents.PostAsync(json.ToString());
-
-                    System.Diagnostics.Debug.WriteLine("Results: " + createResult.IsSuccess);
-                    System.Diagnostics.Debug.WriteLine("Error: " + createResult.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + createResult.Reason);
-
-                    // if not successful
-                    if (createResult.IsSuccess == false)
-                    {
-                        // display an error
-                        errorTextBlock.Text = "An Error occured. Please try again...";
-                        return;
-
-                    } // if
-
-                } // using
-
-                // add new contact to couch
-                using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "contacts"))
-                {
-                    // create new contact object 
-                    var json = new JObject();
-                    json.Add("_id", c.ContactId);
-                    json.Add("conversationId", c.ConversationId);
-                    json.Add("userOne", c.UserOne);
-                    json.Add("UserTwo", c.UserTwo);
-                    json.Add("userOneAccepted", c.UserOneAccepted);
-                    json.Add("userTwoAccepted", c.UserTwoAccepted);
-
-                    // send post to CouchDB to create contact
-                    var createResult = await client.Documents.PostAsync(json.ToString());
-
-
-                    System.Diagnostics.Debug.WriteLine("Results: " + createResult.IsSuccess);
-                    System.Diagnostics.Debug.WriteLine("Error: " + createResult.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + createResult.Reason);
-
-                    // if successful
-                    if (createResult.IsSuccess)
-                    {
-                        // navigate to contacts page
-                        Frame.Navigate(typeof(ContactsPage));
-
-                    }
-                    else
-                    {
-                        // display an error
-                        errorTextBlock.Text = "An Error occured. Please try again...";
-
-                    } // if
-                } // using
-
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-
-                // display an error
-                errorTextBlock.Text = "An Error occured. Please try again...";
-            } // try
-
-
+                // navigate to contacts page
+                Frame.GoBack();
+            } // if
         } // addContact()
     }
 }
