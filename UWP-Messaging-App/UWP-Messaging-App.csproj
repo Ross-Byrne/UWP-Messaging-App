@@ -102,7 +102,6 @@
       <DependentUpon>ContactsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\Contact.cs" />
-    <Compile Include="Data\ConversationService.cs" />
     <Compile Include="Data\UserService.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>

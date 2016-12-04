@@ -40,8 +40,9 @@ namespace UWP_Messaging_App.ViewModels
                 var c = new ContactViewModel(contact);
                 // c.PropertyChanged += Contact_OnNotifyPropertyChanged;
                 _Contacts.Add(c);
-            }
-        }
+            } // foreach
+
+        } // init()
 
         public ObservableCollection<ContactViewModel> Contacts
         {

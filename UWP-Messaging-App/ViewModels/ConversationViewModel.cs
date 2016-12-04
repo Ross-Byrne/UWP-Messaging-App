@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UWP_Messaging_App.Data;
+using UWP_Messaging_App.Models;
+using Windows.UI.Xaml.Controls;
 
 namespace UWP_Messaging_App.ViewModels
 {
@@ -13,7 +15,7 @@ namespace UWP_Messaging_App.ViewModels
     public class ConversationViewModel : NotificationBase
     {
 
-        private ConversationService convoService = new ConversationService();
+        private ConversationModel convoModel = new ConversationModel();
         Conversation conversation { get; set; }
 
         ObservableCollection<MessageViewModel> _Messages
@@ -22,7 +24,20 @@ namespace UWP_Messaging_App.ViewModels
 
         public ConversationViewModel(string id)
         {
-            this.conversation = convoService.getConversationByID(id);
+            // initialise the view model
+            init(id);
+        } // Constructor()
+
+        // initialise the view model
+        public async Task init(string id)
+        {
+            // get the conversation object
+            this.conversation = await convoModel.getConversationByID(id);
+
+            if(conversation == null)
+            {
+                return;
+            }
 
             // load the messages
             foreach (var mes in conversation.messages)
@@ -30,9 +45,9 @@ namespace UWP_Messaging_App.ViewModels
                 var m = new MessageViewModel(mes);
                 m.PropertyChanged += Message_OnNotifyPropertyChanged;
                 _Messages.Add(m);
-            }
-            
-        } // Constructor()
+            } // for
+
+        } // init()
 
         public ObservableCollection<MessageViewModel> Messages
         {
