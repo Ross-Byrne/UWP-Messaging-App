@@ -23,9 +23,14 @@ namespace UWP_Messaging_App
     /// </summary>
     public sealed partial class SettingsPage : Page
     {
+        public string username { get; set; }
         public SettingsPage()
         {
             this.InitializeComponent();
+
+            var localSettings = ApplicationData.Current.LocalSettings;
+            username = localSettings.Values["CurrentUsername"] as string;
+
         }
 
         // sends the user back

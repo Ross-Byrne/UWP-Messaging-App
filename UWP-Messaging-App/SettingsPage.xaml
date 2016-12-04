@@ -26,11 +26,15 @@
             <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
                 <TextBlock Text="Settings" FontSize="28"/>
             </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                <TextBlock Text="Logged in as:" Margin="0 4 0 0"/>
+                <TextBlock Text="{x:Bind username, Mode=OneWay}" FontSize="20" Margin="20 0 0 10"/>
+            </StackPanel>
         </Grid>
         <Grid Grid.Row="1">
-            <StackPanel>
-                <StackPanel Margin="20" HorizontalAlignment="Center">
-                    <Button x:Name="logoutBT" Content="Logout" Click="logoutBT_Click" />
+            <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <StackPanel Margin="20" HorizontalAlignment="Stretch">
+                    <Button x:Name="logoutBT" Content="Logout" Click="logoutBT_Click" HorizontalAlignment="Center"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

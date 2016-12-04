@@ -53,7 +53,7 @@ namespace UWP_Messaging_App
         private void loginBT_Click(object sender, RoutedEventArgs e)
         {
             // navigate to the login page
-            registerPageFrame.Navigate(typeof(LoginPage));
+            Frame.Navigate(typeof(LoginPage));
 
         } // loginBT_Click()
 
@@ -93,7 +93,7 @@ namespace UWP_Messaging_App
                         localSettings.Values["CurrentUserpassword"] = registerPasswordTextBox.Password;
 
                         // navigate to main page
-                        registerPageFrame.Navigate(typeof(ContactsPage));
+                        Frame.Navigate(typeof(ContactsPage));
 
                     }
                     else if (result.StatusCode == System.Net.HttpStatusCode.Conflict) // if username is already taken
