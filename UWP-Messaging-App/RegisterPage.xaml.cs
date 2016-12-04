@@ -93,7 +93,7 @@ namespace UWP_Messaging_App
                         localSettings.Values["CurrentUserpassword"] = registerPasswordTextBox.Password;
 
                         // navigate to main page
-                        registerPageFrame.Navigate(typeof(ConvoPage));
+                        registerPageFrame.Navigate(typeof(ContactsPage));
 
                     }
                     else if (result.StatusCode == System.Net.HttpStatusCode.Conflict) // if username is already taken

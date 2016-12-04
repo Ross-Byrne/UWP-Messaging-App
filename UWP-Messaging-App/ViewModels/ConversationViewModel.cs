@@ -69,6 +69,7 @@ namespace UWP_Messaging_App.ViewModels
             m.Id = Guid.NewGuid().ToString();
             m.SenderId = senderId;
             m.Timestamp = timestamp;
+            m.ConversationId = conversation.id;
             m.Message = message;
 
             m.PropertyChanged += Message_OnNotifyPropertyChanged;

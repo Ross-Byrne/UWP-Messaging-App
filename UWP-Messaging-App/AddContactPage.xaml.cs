@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
+using UWP_Messaging_App.Data;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
@@ -102,9 +103,36 @@ namespace UWP_Messaging_App
                 var user = localSettings.Values["CurrentUsername"] as string;
                 var pass = localSettings.Values["CurrentUserpassword"] as string;
 
+                // create a contact object
+                Contact c = new Contact();
+
+                // set ID for contact
+                c.ContactId = Guid.NewGuid().ToString();
+
+                // create ID for conversation
+                c.ConversationId = Guid.NewGuid().ToString();
+
+                // add username
+                c.Name = username;
+
+                // create the conversation object
+                Conversation convo = new Conversation();
+                convo.id = c.ConversationId;
+                convo.userIds = new List<string>();
+                convo.userIds.Add(_id + user);
+                convo.userIds.Add(_id + username);
+
+                // create conversation object
+                using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "conversations"))
+                {
+                    // add conversation object to couchDB
+                } // using
+
                 // get contacts for couch and add new contact to list
                 using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "contacts"))
                 {
+                    
+
                     // create new user object 
                     var json = new JObject();
                     /* json.Add("_id", _id + registerUsernameTextBox.Text);

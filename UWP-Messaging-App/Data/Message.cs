@@ -10,6 +10,7 @@ namespace UWP_Messaging_App.Data
     public class Message
     {
         public string id { get; set; }              // id of message
+        public string conversationId { get; set; }  // id of conversation message belongs
         public string message { get; set; }         // the message text
         public string senderId { get; set; }        // id of user who sent message
         public long timestamp { get; set; }       // timestamp

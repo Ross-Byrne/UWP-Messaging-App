@@ -19,6 +19,12 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(This.id, value, () => This.id = value); }
         }
 
+        public string ConversationId
+        {
+            get { return This.conversationId; }
+            set { SetProperty(This.conversationId, value, () => This.conversationId = value); }
+        }
+
         public string Message
         {
             get { return This.message; }
