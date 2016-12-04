@@ -63,15 +63,19 @@ namespace UWP_Messaging_App.ViewModels
             // load the messages
             foreach (var mes in normalMessages)
             {
+
+                //foreach(var existingMes in Messages)
                 var m = new MessageViewModel(mes);
                 m.PropertyChanged += Message_OnNotifyPropertyChanged;
                 viewModelMessages.Add(m);
             } // for
 
             // update main collection
-            _Messages = viewModelMessages;
+            Messages = viewModelMessages;
 
             System.Diagnostics.Debug.WriteLine("Updated messages");
+
+
             
 
         } // updateMessages()

@@ -94,9 +94,9 @@ namespace UWP_Messaging_App.Models
                     // get conversation from couchDB
                     var result = await client.Documents.GetAsync("_all_docs");
 
-                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
                     System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
 
                     // if successful
                     if (result.IsSuccess)
@@ -112,7 +112,7 @@ namespace UWP_Messaging_App.Models
                                 // get id
                                 var id = value["id"];
 
-                                 System.Diagnostics.Debug.WriteLine(id.ToString());
+                                 //System.Diagnostics.Debug.WriteLine(id.ToString());
 
                                 // get the message with id
                                 var message = await client.Documents.GetAsync(id.ToString());
@@ -125,7 +125,7 @@ namespace UWP_Messaging_App.Models
                                 {  
                                     // add to list of temps
                                     temp.Add(m);
-                                    System.Diagnostics.Debug.WriteLine("Sender: " + m.senderId + "Message: " + m.message);
+                                    //System.Diagnostics.Debug.WriteLine("Sender: " + m.senderId + " Message: " + m.message);
                                     
                                 } // if
                             } // foreach
