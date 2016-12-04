@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
 using UWP_Messaging_App.Data;
 using UWP_Messaging_App.ViewModels;
@@ -30,12 +31,60 @@ namespace UWP_Messaging_App
         public ConversationViewModel conversation { get; set; }
         public ContactViewModel contact { get; set; }
 
+        private Timer timer;
+
         public ConvoPage()
         {
             this.InitializeComponent();
+            // adapted from this question
+            // http://stackoverflow.com/questions/34271100/timer-in-uwp-app-which-isnt-linked-to-the-ui
 
+            var _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Tick += _dispatcherTimer_Tick;
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
 
+            _dispatcherTimer.Start();
         }
+
+        private void _dispatcherTimer_Tick(object sender, object e)
+        {
+            if (contact != null)
+            {
+                if (conversation.isUpdatingMessages != true)
+                {
+                    // check for messages
+                    conversation.updateMessages(contact.ConversationId);
+
+                    System.Diagnostics.Debug.WriteLine("Timer!");
+
+                } else
+                {
+
+                    System.Diagnostics.Debug.WriteLine("Skiped update");
+                }
+
+            } // if
+        }
+
+        private async void dispatcherTimer_Tick()
+        {
+            // do some work not connected with UI
+            if (contact != null)
+            {
+                
+
+                await Window.Current.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                () => {
+                    // do some work on UI here;
+                    // check for messages
+                    conversation.updateMessages(contact.ConversationId);
+
+                    System.Diagnostics.Debug.WriteLine("Timer!");
+                });
+
+            } // if
+           
+        } // timerCallback
 
         // runs when page is navigated to
         protected override void OnNavigatedTo(NavigationEventArgs e)

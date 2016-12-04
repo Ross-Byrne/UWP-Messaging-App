@@ -16,6 +16,8 @@ namespace UWP_Messaging_App.ViewModels
     {
 
         private ConversationModel convoModel = new ConversationModel();
+        public bool isUpdatingMessages = false;
+
         Conversation conversation { get; set; }
 
         ObservableCollection<MessageViewModel> _Messages
@@ -52,6 +54,25 @@ namespace UWP_Messaging_App.ViewModels
         // updates the messages
         public async Task updateMessages(string convoId)
         {
+            List<Message> normalMessages;
+            ObservableCollection<MessageViewModel> viewModelMessages = new ObservableCollection<MessageViewModel>();
+
+            // updates the messages
+            normalMessages = await convoModel.getMessages(convoId);
+
+            // load the messages
+            foreach (var mes in normalMessages)
+            {
+                var m = new MessageViewModel(mes);
+                m.PropertyChanged += Message_OnNotifyPropertyChanged;
+                viewModelMessages.Add(m);
+            } // for
+
+            // update main collection
+            _Messages = viewModelMessages;
+
+            System.Diagnostics.Debug.WriteLine("Updated messages");
+            
 
         } // updateMessages()
 
@@ -75,6 +96,7 @@ namespace UWP_Messaging_App.ViewModels
         // add message to conversation
         public async Task sendMessage(string senderId, string message)
         {
+            isUpdatingMessages = true;
             //Message m = new Message();
             //m.id = Guid.NewGuid().ToString();
             //m.senderId = senderId;
@@ -93,10 +115,15 @@ namespace UWP_Messaging_App.ViewModels
 
             m.PropertyChanged += Message_OnNotifyPropertyChanged;
             Messages.Add(m);
-            conversation.messages.Add(m); // just for now
+           // conversation.messages.Add(m); // just for now
             
             // saves message
             await convoModel.addMessage(m);
+
+            // update all messages
+            //await updateMessages(m.ConversationId);
+
+            isUpdatingMessages = false;
 
         } // sendMessage()
 
