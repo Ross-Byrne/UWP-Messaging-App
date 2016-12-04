@@ -31,7 +31,7 @@ namespace UWP_Messaging_App.ViewModels
                 m.PropertyChanged += Message_OnNotifyPropertyChanged;
                 _Messages.Add(m);
             }
-
+            
         } // Constructor()
 
         public ObservableCollection<MessageViewModel> Messages
@@ -61,6 +61,8 @@ namespace UWP_Messaging_App.ViewModels
 
             // get timestamp
             long timestamp = DateTime.UtcNow.Ticks;
+
+            System.Diagnostics.Debug.WriteLine(timestamp);
 
             // create a new message view model
             var m = new MessageViewModel();

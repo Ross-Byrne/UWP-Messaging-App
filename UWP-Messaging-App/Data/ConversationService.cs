@@ -30,74 +30,41 @@ namespace UWP_Messaging_App.Data
             m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u2";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u2";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u2";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u1";
-            m.message = "kjenrgknerkgjnerkjgnekjrgnkejrngkjerngkjerngkjn jne jn kej nekjr kej nekj nekj nek jnerk jnek jnek je kjne kjn kjer kjnerkj nerkj nekrjn ekrj nekrj nekrj 5";
-            c.messages.Add(m);
-
-            m = new Message();
-            m.id = Guid.NewGuid().ToString();
-            m.senderId = "u2";
             m.message = "Hey there";
+            m.timestamp = 636164041309011230;
             c.messages.Add(m);
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.id = Guid.NewGuid().ToString();
             m.message = "Blah blah blah";
+            m.timestamp = 636164041309011239;
             c.messages.Add(m);
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
             m.message = "Damn I hate you";
+
+            m.timestamp = 636164041309011240;
             c.messages.Add(m);
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.senderId = "u1";
             m.message = "Thanks, you too.";
+            m.timestamp = 636164041309011249;
             c.messages.Add(m);
 
             m = new Message();
             m.id = Guid.NewGuid().ToString();
             m.senderId = "u2";
             m.message = "<3";
+            m.timestamp = 636164041309011241;
             c.messages.Add(m);
+
+            IOrderedEnumerable<Message> l = c.messages.OrderBy(t => t.timestamp);
+            c.messages = new List<Message>(l);
 
             return c;
 
