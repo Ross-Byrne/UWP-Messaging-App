@@ -77,8 +77,6 @@ namespace UWP_Messaging_App.ViewModels
             // get timestamp
             long timestamp = DateTime.UtcNow.Ticks;
 
-            System.Diagnostics.Debug.WriteLine(timestamp);
-
             // create a new message view model
             var m = new MessageViewModel();
             m.Id = Guid.NewGuid().ToString();

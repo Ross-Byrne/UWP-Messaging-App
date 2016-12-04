@@ -1,4 +1,5 @@
 ﻿using MyCouch;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,52 +26,6 @@ namespace UWP_Messaging_App.Models
             // update messages
             c.messages = await getMessages(id);
 
-           
-           // c.id = "c1";
-           // c.userIds = new List<string>();
-           // c.userIds.Add("u1");
-           // c.userIds.Add("u2");
-           //// c.messages = new List<Message>();
-
-           // m = new Message();
-           // m.id = Guid.NewGuid().ToString();
-           // m.senderId = "u2";
-           // m.message = "Hey there";
-           // m.timestamp = 636164041309011230;
-           //// c.messages.Add(m);
-
-           // m = new Message();
-           // m.id = Guid.NewGuid().ToString();
-           // m.id = Guid.NewGuid().ToString();
-           // m.message = "Blah blah blah";
-           // m.timestamp = 636164041309011239;
-           // //c.messages.Add(m);
-
-           // m = new Message();
-           // m.id = Guid.NewGuid().ToString();
-           // m.senderId = "u2";
-           // m.message = "Damn I hate you";
-
-           // m.timestamp = 636164041309011240;
-           // c.messages.Add(m);
-
-           // m = new Message();
-           // m.id = Guid.NewGuid().ToString();
-           // m.senderId = "u1";
-           // m.message = "Thanks, you too.";
-           // m.timestamp = 636164041309011249;
-           // c.messages.Add(m);
-
-           // m = new Message();
-           // m.id = Guid.NewGuid().ToString();
-           // m.senderId = "u2";
-           // m.message = "<3";
-           // m.timestamp = 636164041309011241;
-           // c.messages.Add(m);
-
-           // IOrderedEnumerable<Message> l = c.messages.OrderBy(t => t.timestamp);
-           // c.messages = new List<Message>(l);
-
             return c;
 
         } // getConversationByID()
@@ -79,7 +34,76 @@ namespace UWP_Messaging_App.Models
         // updates the messages for a conversation
         public async Task<List<Message>> getMessages(string convoId)
         {
-            return null;
+            List<Message> temp = new List<Message>();
+            try
+            {
+                // get logged in users details for authenticate calls
+                var localSettings = ApplicationData.Current.LocalSettings;
+                var user = localSettings.Values["CurrentUsername"] as string;
+                var pass = localSettings.Values["CurrentUserpassword"] as string;
+
+                // get messages
+                using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "messages"))
+                {
+
+                    // get conversation from couchDB
+                    var result = await client.Documents.GetAsync("_all_docs");
+
+                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+
+                    // if successful
+                    if (result.IsSuccess)
+                    {
+                        if (result.Content != null)
+                        {
+                            var values = client.Serializer.Deserialize<JObject>(result.Content);
+
+                            //System.Diagnostics.Debug.WriteLine(keyvalues["rows"].Count());
+
+                            foreach (var value in values["rows"]) // for each message
+                            {
+                                // get id
+                                var id = value["id"];
+
+                                 System.Diagnostics.Debug.WriteLine(id.ToString());
+
+                                // get the message with id
+                                var message = await client.Documents.GetAsync(id.ToString());
+
+                                // deserialize result
+                                var m = client.Serializer.Deserialize<Message>(message.Content);
+
+                                if (m != null)
+                                {
+                                    // add to list of temps
+                                    temp.Add(m);
+                                    System.Diagnostics.Debug.WriteLine("Sender: " + m.senderId + "Message: " + m.message );
+
+                                } // if
+                            } // foreach
+
+                            // order the messages by time stamp
+                            IOrderedEnumerable<Message> orderedList = temp.OrderBy(t => t.timestamp);
+                            var messages = new List<Message>(orderedList);
+
+                            // return message list
+                            return messages;
+                            
+                        } // if
+                    } // if
+
+                    return null;
+
+                } // using
+
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return null;
+            } // try
         }
 
         private async Task<Conversation> getConvoFromCouch(string id)
@@ -126,6 +150,7 @@ namespace UWP_Messaging_App.Models
                 System.Diagnostics.Debug.WriteLine(ex.Message);
                 return null;
             } // try
+
         } // getConvoFromCouch()
 
     } // class
