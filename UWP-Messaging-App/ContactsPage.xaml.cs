@@ -53,5 +53,13 @@ namespace UWP_Messaging_App
             Frame.Navigate(typeof(ConvoPage), selectedItem as ContactViewModel);
 
         } // contactsList_SelectionChanged()
+
+        // navigates to the add contact page
+        private void addContactsBT_Click(object sender, RoutedEventArgs e)
+        {
+            // navigate to add contact page
+            Frame.Navigate(typeof(AddContactPage));
+
+        } // addContactsBT_Click()
     }
 }

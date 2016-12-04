@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel HorizontalAlignment="Left" Grid.Column="0" Margin="10" >
-                <Button x:Name="addContactsBT" Content="Add Contact" />
+                <Button x:Name="addContactsBT" Content="Add Contact" Click="addContactsBT_Click" />
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
                 <TextBlock Text="Contacts" FontSize="28"/>
