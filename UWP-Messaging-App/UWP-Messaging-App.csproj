@@ -113,7 +113,6 @@
     <Compile Include="Data\Conversation.cs" />
     <Compile Include="Data\Message.cs" />
     <Compile Include="Data\User.cs" />
-    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ContactsModel.cs" />
     <Compile Include="Models\ConversationModel.cs" />
     <Compile Include="Models\MessageModel.cs" />

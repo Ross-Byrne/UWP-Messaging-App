@@ -58,9 +58,9 @@ namespace UWP_Messaging_App.Models
                     // get all contacts
                     var result = await client.Documents.GetAsync("_all_docs");
 
-                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
                     System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
 
                     // check that contact is not already added
                     if (result.Content != null)
@@ -68,14 +68,14 @@ namespace UWP_Messaging_App.Models
 
                         var keyvalues = client.Serializer.Deserialize<JObject>(result.Content);
 
-                        System.Diagnostics.Debug.WriteLine(keyvalues["rows"].Count());
+                        //System.Diagnostics.Debug.WriteLine(keyvalues["rows"].Count());
 
                         foreach(var value in keyvalues["rows"]) // for each contact
                         {
                             // get id
                             var id = value["id"];
 
-                            System.Diagnostics.Debug.WriteLine(id.ToString());
+                           // System.Diagnostics.Debug.WriteLine(id.ToString());
 
                             // get the contact
                             var contact = await client.Documents.GetAsync(id.ToString());
@@ -90,7 +90,7 @@ namespace UWP_Messaging_App.Models
                                 {
                                     // add to list of temps
                                     tempContacts.Add(c);
-                                    System.Diagnostics.Debug.WriteLine("UserOne: " + c.UserOne + "\nUserTwo: " + c.UserTwo);
+                                    //System.Diagnostics.Debug.WriteLine("UserOne: " + c.UserOne + "\nUserTwo: " + c.UserTwo);
                                 } // if
 
                             } // if

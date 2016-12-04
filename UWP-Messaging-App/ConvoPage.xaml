@@ -26,7 +26,7 @@
                     <Button x:Name="backBT" Content="Go Back" Click="backBT_Click" />
                 </StackPanel>
                 <StackPanel HorizontalAlignment="Center" Grid.Column="1" Margin="5">
-                    <TextBlock x:Name="contactNameTextBlock"  Text="{x:Bind ContactName, Mode=OneTime}" FontSize="28"/>
+                    <TextBlock x:Name="contactNameTextBlock"  Text="{x:Bind contact.ContactName, Mode=OneTime}" FontSize="28"/>
                 </StackPanel>
                 
             </Grid>
