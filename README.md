@@ -2,7 +2,7 @@
 A messaging app made in UWP
 
 ##Introduction
-This messaging app was created allows users to sign up with a username and password. They can then login, add other users who use the app and message them.
+This messaging app allows users to sign up with a username and password. They can then login, add other users who use the app and message them.
 
 ##Setup
 
