@@ -45,8 +45,11 @@
                         <ItemsControl  Name="MessageList" ItemsSource="{x:Bind conversation.Messages, Mode=OneWay}" Loaded="MessageList_Loaded">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Name="messageStackPanel" BorderBrush="Black" BorderThickness="2" Padding="15 10 15 10" Margin="30 5 30 5" CornerRadius="20" HorizontalAlignment="{Binding Alignment}">
-                                        <TextBlock Text="{Binding Message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap"></TextBlock>
+                                    <StackPanel>
+                                        <StackPanel Background="#FF227CFF" Name="messageStackPanel" Padding="15 10 15 10" Margin="30 5 30 0" CornerRadius="20" HorizontalAlignment="{Binding Alignment}">
+                                            <TextBlock Text="{Binding Message}" Name="messageText" MinWidth="40" MinHeight="22" MaxWidth="280" TextWrapping="Wrap" Foreground="White"></TextBlock>
+                                        </StackPanel>
+                                        <TextBlock Margin="45 0 45 5" FontSize="12" Text="{Binding SenderId}" HorizontalAlignment="{Binding Alignment}"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

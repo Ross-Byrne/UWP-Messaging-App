@@ -77,9 +77,6 @@ namespace UWP_Messaging_App.ViewModels
 
             System.Diagnostics.Debug.WriteLine("Updated messages");
 
-
-            
-
         } // updateMessages()
 
         public ObservableCollection<MessageViewModel> Messages
