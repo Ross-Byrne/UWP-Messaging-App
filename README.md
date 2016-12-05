@@ -32,3 +32,6 @@ Contains the message objects
 ##Security
 All calls to couchDB, other then creating the user, are authenticated with the logged in users login details.
 
+##References
+####Loading Gif
+http://ajaxload.info/
