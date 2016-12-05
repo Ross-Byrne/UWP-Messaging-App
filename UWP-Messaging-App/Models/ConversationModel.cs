@@ -56,9 +56,9 @@ namespace UWP_Messaging_App.Models
                     // save message to couchDB
                     var result = await client.Documents.PostAsync(json.ToString());
 
-                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
                     System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
 
                     // if successful
                     if (result.IsSuccess)
@@ -172,9 +172,9 @@ namespace UWP_Messaging_App.Models
                     // get conversation from couchDB
                     var result = await client.Documents.GetAsync(id);
 
-                    System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
+                    /*System.Diagnostics.Debug.WriteLine("Results: " + result.IsSuccess);
                     System.Diagnostics.Debug.WriteLine("Error: " + result.Error);
-                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);
+                    System.Diagnostics.Debug.WriteLine("Reason: " + result.Reason);*/
 
                     // if successful
                     if (result.IsSuccess)

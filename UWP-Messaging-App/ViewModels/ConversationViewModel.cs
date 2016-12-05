@@ -33,6 +33,7 @@ namespace UWP_Messaging_App.ViewModels
         // initialise the view model
         public async Task init(string id)
         {
+            isUpdatingMessages = true;
             // get the conversation object
             this.conversation = await convoModel.getConversationByID(id);
 
@@ -49,6 +50,7 @@ namespace UWP_Messaging_App.ViewModels
                 _Messages.Add(m);
             } // for
 
+            isUpdatingMessages = false;
         } // init()
 
         // updates the messages

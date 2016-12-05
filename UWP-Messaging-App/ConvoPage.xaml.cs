@@ -32,6 +32,7 @@ namespace UWP_Messaging_App
         public ContactViewModel contact { get; set; }
 
         private Timer timer;
+        private DispatcherTimer _loadingDispatcherTimer;
 
         public ConvoPage()
         {
@@ -41,9 +42,32 @@ namespace UWP_Messaging_App
 
             var _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += _dispatcherTimer_Tick;
-            _dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
 
             _dispatcherTimer.Start();
+
+            _loadingDispatcherTimer = new DispatcherTimer();
+            _loadingDispatcherTimer.Tick += _loadingDispatcherTimer_Tick;
+            _loadingDispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+
+            _loadingDispatcherTimer.Start();
+
+        }
+
+        private void _loadingDispatcherTimer_Tick(object sender, object e)
+        {
+            if(conversation != null)
+            {
+                if(conversation.isUpdatingMessages != true)
+                {
+                    // cancel loading gif
+                    loadingGif.Visibility = Visibility.Collapsed;
+
+                    // stop timer
+                    _loadingDispatcherTimer.Stop();
+                }
+            }
+            
         }
 
         private async void _dispatcherTimer_Tick(object sender, object e)
@@ -52,7 +76,6 @@ namespace UWP_Messaging_App
             {
                 if (conversation.isUpdatingMessages != true)
                 {
-                    // check for messages
                     await conversation.updateMessages(contact.ConversationId);
 
                     // scroll to the bottom of the scroll area
