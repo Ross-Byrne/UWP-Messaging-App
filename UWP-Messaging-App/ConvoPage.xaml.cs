@@ -75,7 +75,15 @@ namespace UWP_Messaging_App
             {
                 if (conversation.isUpdatingMessages != true)
                 {
-                    await conversation.updateMessages(contact.ConversationId);
+                    try
+                    {
+                        // update messages
+                        await conversation.updateMessages(contact.ConversationId);
+
+                    }catch(Exception ex)
+                    {
+                        System.Diagnostics.Debug.WriteLine(ex.Message);
+                    }
 
                     // scroll to the bottom of the scroll area
                     scrollView.ChangeView(scrollView.HorizontalOffset, scrollView.ScrollableHeight, scrollView.ZoomFactor, false);

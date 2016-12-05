@@ -87,6 +87,11 @@ namespace UWP_Messaging_App.Models
                 var user = localSettings.Values["CurrentUsername"] as string;
                 var pass = localSettings.Values["CurrentUserpassword"] as string;
 
+                if(user == null || pass == null)
+                {
+                    return conversation.messages;
+                }
+
                 // get messages
                 using (var client = new MyCouchClient("http://" + user + ":" + pass + "@uwp-couchdb.westeurope.cloudapp.azure.com:5984", "messages"))
                 {
