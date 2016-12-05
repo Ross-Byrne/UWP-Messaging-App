@@ -1,7 +1,6 @@
 # UWP-Messaging-App
 A messaging app made in UWP
 
-
 ##Setup
 
 Using instructions here: http://linoxide.com/linux-how-to/install-couchdb-futon-ubuntu-1604/ 
@@ -13,32 +12,19 @@ Azure VM DNS: uwp-couchdb.westeurope.cloudapp.azure.com
 
 CouchDB is being used as the database.
 
-####Users
-userID,<br>
-username,<br>
-email,<br>
-firstName,<br>
-lastName,<br>
-securityQ1,  // security questions for resetting password<br>
-securityQ2<br>
+CouchDB has the following databases:
 
-####Paswords
-passwordID,<br>
-userID  // to link password to user<br>
-password<br>
+###_users
+Contains the users for the messaging app. These users are also managed by couchDB's authentication system.
 
-####Conversations
-convoID,<br>
-userOneID,  // ids of the two users engaging in conversation<br>
-userTwoID<br>
+###contacts
+Cotains the contact object. It is created when two users add eachother as contacts.
 
-####ConvoMessages
-convoMessagesID,<br>
-convoID,  // the id of the conversation, links the users involved in conv<br>
-Messages[] // list of messages in convo, of type Message (Seen Below)<br>
+###conversations
+Contains the conversation object. There is one object for each conversation between users.
 
-####Message Type
-// structure of the actual message object being stored in convoMessages<br>
-messageID,<br>
-userID,   // the id of the user who send message<br>
-messageBody  // actual message text<br>
+###messages
+Contains the message objects
+
+
+
