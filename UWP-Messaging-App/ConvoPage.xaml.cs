@@ -41,9 +41,10 @@ namespace UWP_Messaging_App
 
             var _dispatcherTimer = new DispatcherTimer();
             _dispatcherTimer.Tick += _dispatcherTimer_Tick;
-            _dispatcherTimer.Interval = new TimeSpan(0, 0, 15);
+            _dispatcherTimer.Interval = new TimeSpan(0, 0, 8);
 
             _dispatcherTimer.Start();
+
         }
 
         private async void _dispatcherTimer_Tick(object sender, object e)
@@ -52,6 +53,7 @@ namespace UWP_Messaging_App
             {
                 if (conversation.isUpdatingMessages != true)
                 {
+                    loadingGif.Visibility = Visibility.Collapsed;
                     // check for messages
                     await conversation.updateMessages(contact.ConversationId);
 

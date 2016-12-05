@@ -37,6 +37,7 @@
                     <RowDefinition Height="160"/>
                 </Grid.RowDefinitions>
 
+                <Image Name="loadingGif" Source="Assets\ajax-loader.gif" MaxWidth="80" MaxHeight="80" />
                 <!-- Area for messages to be displayed -->
                 <ScrollViewer Name="scrollView" Grid.Row="0">
                     <StackPanel HorizontalAlignment="Stretch" Margin="50 0 50 0">
