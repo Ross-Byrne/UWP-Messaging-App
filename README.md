@@ -1,6 +1,9 @@
 # UWP-Messaging-App
 A messaging app made in UWP
 
+##Introduction
+This messaging app was created allows users to sign up with a username and password. They can then login, add other users who use the app and message them.
+
 ##Setup
 
 Using instructions here: http://linoxide.com/linux-how-to/install-couchdb-futon-ubuntu-1604/ 
@@ -26,5 +29,6 @@ Contains the conversation object. There is one object for each conversation betw
 ###messages
 Contains the message objects
 
-
+##Security
+All calls to couchDB, other then creating the user, are authenticated with the logged in users login details.
 
