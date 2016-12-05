@@ -50,12 +50,7 @@ namespace UWP_Messaging_App.ViewModels
             set { SetProperty(ref _Contacts, value); }
         }
 
-        // add contact Method
-        public void addContact(string id)
-        {
-           // contactsModel.Add(id);
-        }
-
+       
         void Contact_OnNotifyPropertyChanged(Object sender, PropertyChangedEventArgs e)
         {
             //conversation.Update((MessageViewModel)sender); // method to update couchDB

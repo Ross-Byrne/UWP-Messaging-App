@@ -31,7 +31,6 @@ namespace UWP_Messaging_App
         public ConversationViewModel conversation { get; set; }
         public ContactViewModel contact { get; set; }
 
-        private Timer timer;
         private DispatcherTimer _loadingDispatcherTimer;
 
         public ConvoPage()
